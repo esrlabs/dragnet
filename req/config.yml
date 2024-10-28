@@ -1,0 +1,5 @@
+Config:
+  - originator: ESR Labs
+    files:
+      - "*.dim"
+    category: software

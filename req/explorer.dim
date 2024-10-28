@@ -1,0 +1,26 @@
+module: Explorer
+
+DRAGNET_0001:
+  text:            |
+                   The path where the MTR files are stored shall be
+                   configurable.
+  tags:            covered, tested
+  test_setups:     off_target
+  status:          valid
+
+DRAGNET_0002:
+  text:            |
+                   It shall be possible to define a glob pattern to search for
+                   MTR files inside the defined path.
+  tags:            covered, tested
+  test_setups:     off_target
+  status:          valid
+
+DRAGNET_0033:
+  text:            |
+                   The Explorer shall notify the user and fail the build when it
+                   cannot find any MTR files in the specified path using the
+                   given glob patterns.
+  test_setups:     off_target
+  tags:            covered, tested
+  status:          valid

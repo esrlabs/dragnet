@@ -1,0 +1,518 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Dragnet Report for <%= repository.multi? ? "Multiple Repositories" : shorten_sha1(repository.head.sha) %></title>
+        <script src="https://unpkg.com/@tabler/core@1.0.0-beta2/dist/js/tabler.min.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/@tabler/core@1.0.0-beta2/dist/css/tabler.min.css">
+    </head>
+    <body class="antialiased"> <!-- theme-dark -->
+        <div class="wrapper">
+            <div class="sticky-top">
+                <header class="navbar navbar-expand-md navbar-light d-print-none">
+                    <div class="container-xl">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-right-bar" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M18 15l3 -3l-3 -3"></path>
+                                <path d="M3 12h18"></path>
+                                <path d="M3 9v6"></path>
+                            </svg>
+                            Dragnet
+                        </h1>
+                    </div>
+                </header>
+                <div class="navbar-expand-md">
+                    <div class="collapse navbar-collapse" id="navbar-menu">
+                        <div class="navbar navbar-light">
+                            <div class="container-xl">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#mtr-files">
+                                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                    <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                                    <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
+                                                    <path d="M9 15l2 2l4 -4"></path>
+                                                </svg>
+                                            </span>
+                                            <span class="nav-link-title">MTR Files</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#test_results">
+                                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                   <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                                   <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
+                                                   <path d="M9 15l2 2l4 -4"></path>
+                                                </svg>
+                                            </span>
+                                            <span class="nav-link-title">Test results</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">
+                                                <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevrons-up" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                                        <polyline points="7 11 12 6 17 11"/>
+                                                        <polyline points="7 17 12 12 17 17"/>
+                                                    </svg>
+                                                </span>
+                                                <span class="nav-link-title">Top</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-wrapper">
+                <div class="page-body">
+                    <div class="container-xl">
+                        <div class="alert alert-warning alert-dismissible" role="alert">
+                            <div class="d-flex">
+                                <div>
+                                    <h4 class="alert-title">Not a customer report</h4>
+                                    <div class="text-muted">Please be aware that this report should not be shared with external stakeholders. Exports for customers can be provided by other tools.</div>
+                                </div>
+                            </div>
+                            <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+                        </div>
+
+                        <div class="row row-deck row-cards mb-3">
+                            <div class="col-sm-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Configuration</h3>
+                                    </div>
+                                    <div class="card-body">
+
+                                        <% if repository.multi? %>
+
+                                            <div class="table-responsive">
+                                                <table class="table table-vcenter card-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Repository</th>
+                                                            <th>Configuration</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        <% repository.repositories.each do |repository_path, repository| %>
+
+                                                            <tr>
+                                                                <td><%= repository_path %></td>
+                                                                <td>
+                                                                    <dl class="row">
+                                                                        <dt class="col-4">Remote:</dt>
+                                                                        <dd class="col-8"><%= repository.remote_uri_path %></dd>
+                                                                        <dt class="col-4">Software branch(es):</dt>
+                                                                        <dd class="col-8"><%= software_branches(repository).join(', ') %></dd>
+                                                                        <dt class="col-4">Git sha1:</dt>
+                                                                        <dd class="col-8"><%= repository.head.sha %></dd>
+                                                                        <dt class="col-4">Build:</dt>
+                                                                        <dd class="col-8"> -- Not implemented --</dd>
+                                                                    </dl>
+                                                                </td>
+                                                            </tr>
+
+                                                        <% end %>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        <% else %>
+
+                                            <dl class="row">
+                                                <dt class="col-4">Repository:</dt>
+                                                <dd class="col-8"><%= repository.remote_uri_path %></dd>
+                                                <dt class="col-4">Software branch(es):</dt>
+                                                <dd class="col-8"><%= software_branches(repository).join(', ') %></dd>
+                                                <dt class="col-4">Git sha1:</dt>
+                                                <dd class="col-8"><%= repository.head.sha %></dd>
+                                                <dt class="col-4">Build:</dt>
+                                                <dd class="col-8"> -- Not implemented --</dd>
+                                            </dl>
+
+                                        <% end %>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row row-deck row-cards mb-3">
+
+                            <% if test_records_by_requirement.any? %>
+
+                                <div class="col-sm-6 col-lg-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center">
+                                                <div class="subheader">Requirements</div>
+                                            </div>
+
+                                            <% total_requirements = test_records_by_requirement.size %>
+
+                                            <div class="h1 mb-3"><%= total_requirements %></div>
+
+                                            <%
+                                            requirements_by_status = test_records_by_requirement.group_by do |_requirement, test_records|
+                                              if test_records.all? { |test_record| test_record.verification_result.passed? }
+                                                :passed
+                                              elsif test_records.any? { |test_record| test_record.verification_result.failed? }
+                                                :failed
+                                              else
+                                                :skipped
+                                              end
+                                            end
+
+                                            total_passed = requirements_by_status[:passed]&.size || 0
+                                            total_skipped = requirements_by_status[:skipped]&.size || 0
+                                            total_failed = requirements_by_status[:failed]&.size || 0
+                                            passed_percent = percentage(total_passed, total_requirements)
+                                            skipped_percent = percentage(total_skipped, total_requirements)
+                                            failed_percent = percentage(total_failed, total_requirements)
+                                            %>
+
+                                            <div class="progress progress-separated mb-3">
+                                                <div class="progress-bar bg-green" role="progressbar" style="width: <%= passed_percent %>%"></div>
+                                                <div class="progress-bar bg-red" role="progressbar" style="width: <%= failed_percent %>%"></div>
+                                                <div class="progress-bar bg-yellow" role="progressbar" style="width: <%= skipped_percent %>%"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-auto d-flex align-items-center pe-2">
+                                                    <span class="legend me-2 bg-green"></span>
+                                                    <span>Passed</span>
+                                                    <span class="d-none d-md-inline d-lg-none d-xxl-inline ms-2 text-muted"><%= total_passed %> (<%= passed_percent %>%)</span>
+                                                </div>
+                                                <div class="col-auto d-flex align-items-center px-2">
+                                                    <span class="legend me-2 bg-red"></span>
+                                                    <span>Failed</span>
+                                                    <span class="d-none d-md-inline d-lg-none d-xxl-inline ms-2 text-muted"><%= total_failed %> (<%= failed_percent %>%)</span>
+                                                </div>
+                                                <div class="col-auto d-flex align-items-center px-2">
+                                                    <span class="legend me-2 bg-yellow"></span>
+                                                    <span>Skipped</span>
+                                                    <span class="d-none d-md-inline d-lg-none d-xxl-inline ms-2 text-muted"><%= total_skipped %> (<%= skipped_percent %>%)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <% end %>
+
+                            <div class="col-sm-6 col-lg-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="subheader">Test cases</div>
+                                        </div>
+
+                                        <% total_test_records = test_records.size %>
+
+                                        <div class="h1 mb-3"><%= total_test_records %></div>
+                                        <div class="progress progress-separated mb-3">
+
+                                            <%
+                                            test_records_by_status = test_records.group_by do |test_record|
+                                              if test_record.reviewed?
+                                                test_record.findings? ? :skipped : :passed
+                                              else
+                                                :failed
+                                              end
+                                            end
+
+                                            total_passed = test_records_by_status[:passed]&.size || 0
+                                            total_skipped = test_records_by_status[:skipped]&.size || 0
+                                            total_failed = test_records_by_status[:failed]&.size || 0
+                                            passed_percent = percentage(total_passed, total_test_records)
+                                            skipped_percent = percentage(total_skipped, total_test_records)
+                                            failed_percent = percentage(total_failed, total_test_records)
+                                            %>
+
+                                            <div class="progress-bar bg-green" role="progressbar" style="width: <%= passed_percent %>%"></div>
+                                            <div class="progress-bar bg-red" role="progressbar" style="width: <%= failed_percent %>%"></div>
+                                            <div class="progress-bar bg-yellow" role="progressbar" style="width: <%= skipped_percent %>%"></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-auto d-flex align-items-center pe-2">
+                                                <span class="legend me-2 bg-green"></span>
+                                                <span>Reviewed</span>
+                                                <span class="d-none d-md-inline d-lg-none d-xxl-inline ms-2 text-muted"><%= total_passed %> (<%= passed_percent %>%)</span>
+                                            </div>
+                                            <div class="col-auto d-flex align-items-center px-2">
+                                                <span class="legend me-2 bg-red"></span>
+                                                <span>Not reviewed</span>
+                                                <span class="d-none d-md-inline d-lg-none d-xxl-inline ms-2 text-muted"><%= total_failed %> (<%= failed_percent %>%)</span>
+                                            </div>
+                                            <div class="col-auto d-flex align-items-center px-2">
+                                                <span class="legend me-2 bg-yellow"></span>
+                                                <span>Findings</span>
+                                                <span class="d-none d-md-inline d-lg-none d-xxl-inline ms-2 text-muted"><%= total_skipped %> (<%= skipped_percent %>%)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <h1 id="mtr-files">MTR Files</h1>
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Overview</h3>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-vcenter table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>File</th>
+                                                    <th>Status</th>
+                                                    <th>Reason</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <% errors.each do |error| %>
+
+                                                    <tr>
+                                                        <td><%= relative_to_repo(error[:file]) %></td>
+                                                        <td><span class="badge bg-red">Failed</span></td>
+                                                        <td><%= error[:message] %><br><%= error[:exception].message %></td>
+                                                    </tr>
+
+                                                <% end %>
+
+                                                <% test_records.each do |test_record| %>
+
+                                                    <tr>
+                                                        <td><%= relative_to_repo(test_record.source_file) %></td>
+                                                        <td><span class="badge bg-green">Successfully Loaded</span></td>
+                                                        <td>-</td>
+                                                    </tr>
+
+                                                <% end %>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h1 class="mt-3" id="test_results">Test results</h1>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Overview</h3>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="table table-vcenter table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Requirement ID</th>
+                                                        <th>SHA1</th>
+                                                        <th>Files</th>
+                                                        <th>Review Status</th>
+                                                        <th>Test Result</th>
+                                                        <th>Details</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <% test_records.each_with_index do |test_record, index| %>
+
+                                                        <tr>
+                                                            <td><%= index + 1 %></td>
+                                                            <td><%= test_record_id_to_string(test_record) %></td>
+                                                            <td><%= test_record.sha1 ? shorten_sha1(test_record.sha1) : '(None)' %></td>
+                                                            <td>
+
+                                                                <% if test_record.files&.any? %>
+
+                                                                    <%= test_record.files.map { |file| relative_to_repo(file) }.join('<br/>') %>
+
+                                                                <% else %>
+
+                                                                    (None)
+
+                                                                <% end %>
+
+                                                            </td>
+                                                            <td><%= review_status_badge(test_record) %></td>
+                                                            <td><%= verification_result_badge(test_record.verification_result) %></td>
+                                                            <td><a href="#test-record-<%= index %>">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevrons-down" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                                    <polyline points="7 7 12 12 17 7"></polyline>
+                                                                    <polyline points="7 13 12 18 17 13"></polyline>
+                                                                </svg>
+                                                            </a></td>
+                                                        </tr>
+
+                                                    <% end %>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <% test_records.each_with_index do |test_record, index| %>
+
+                                <div class="row mt-3">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-status-start bg-<%= card_color(test_record.verification_result) %>"></div>
+                                            <div class="card-header">
+                                                <h3 class="card-title" id="test-record-<%= index %>"><%= test_record_id_to_string(test_record) %></h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <dl class="row">
+                                                    <dt class="col-3">MTR file:</dt>
+                                                    <dd class="col-9"><%= relative_to_repo(test_record.source_file) %></dd>
+
+                                                    <% if test_record.name.present? %>
+
+                                                      <dt class="col-3">Tester name:</dt>
+                                                      <dd class="col-9"><%= test_record.name.join(', ') %></dd>
+
+                                                    <% end %>
+
+                                                    <% if test_record.test_method.present? %>
+
+                                                      <dt class="col-3">Test method:</dt>
+                                                      <dd class="col-9"><%= test_record.test_method.join(', ') %></dd>
+
+                                                    <% end %>
+
+                                                    <% if test_record.tc_derivation_method.present? %>
+
+                                                      <dt class="col-3">Derivation method:</dt>
+                                                      <dd class="col-9"><%= test_record.tc_derivation_method.join(', ') %></dd>
+
+                                                    <% end %>
+
+                                                    <% if test_record.repos %>
+
+                                                        <dt class="col-3">Repositories:</dt>
+                                                        <dd class="col-9">
+                                                            <ul>
+
+                                                                <% test_record.repos.each do |repo| %>
+
+                                                                    <li>
+
+                                                                      <%= repo.path %><br />
+                                                                      <%= repo.sha1 %><br />
+
+                                                                      <% repo.files&.each do |file| %>
+
+                                                                          <ul>
+
+                                                                            <li><%= relative_to_repo(file).sub("#{repo.path}/", '') %></li>
+
+                                                                          </ul>
+
+                                                                      <% end %>
+
+                                                                    </li>
+
+                                                                <% end %>
+
+                                                            </ul>
+                                                        </dd>
+
+                                                    <% else %>
+
+                                                        <dt class="col-3">SHA1:</dt>
+                                                        <dd class="col-9"><%= test_record.sha1 %></dd>
+                                                        <dt class="col-3">Files:</dt>
+                                                        <dd class="col-9">
+
+                                                            <% if test_record.files&.any? %>
+
+                                                                <%= test_record.files.map { |file| relative_to_repo(file) }.join('<br/>') %>
+
+                                                            <% else %>
+
+                                                                (None)
+
+                                                            <% end %>
+
+                                                        </dd>
+
+                                                    <% end %>
+
+                                                    <dt class="col-3">ASIL:</dt>
+                                                    <dd class="col-9"> -- Not implemented -- </dd>
+                                                    <dt class="col-3">SECL:</dt>
+                                                    <dd class="col-9"> -- Not implemented -- </dd>
+                                                    <dt class="col-3">Description:</dt>
+                                                    <dd class="col-9">
+                                                      <%= test_record.description %>
+                                                    </dd>
+                                                    <dt class="col-3">Test Result:</dt>
+                                                    <dd class="col-9"><%= verification_result_badge(test_record.verification_result) %></dd>
+
+                                                    <% unless test_record.verification_result.passed? %>
+
+                                                        <dt class="col-3">Reason:</dt>
+                                                        <dd class="col-9"><%= test_record.verification_result.reason %></dd>
+
+                                                    <% end %>
+
+                                                    <dt class="col-3">Review Status:</dt>
+                                                    <dd class="col-9"><%= review_status_badge(test_record) %></dd>
+                                                    <dt class="col-3">Review Comments:</dt>
+                                                    <dd class="col-9"><%= test_record.review_comments || '(None)' %></dd>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <% end %>
+
+                        </div>
+                    </div>
+                </div>
+                <footer class="footer footer-transparent d-print-none">
+                    <div class="container">
+                        <div class="row text-center align-items-center flex-row-reverse">
+                            <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+                                <ul class="list-inline list-inline-dots mb-0">
+                                    <li class="list-inline-item">
+                                        Generated on <%= Time.now.strftime("%F %T") %> by Dragnet
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a target="_blank" href="https://github.com/esrlabs/dragnet/blob/master/CHANGELOG.md" class="link-secondary" rel="noopener">Version <%= Dragnet::VERSION %></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </body>
+</html>

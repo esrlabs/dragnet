@@ -1,0 +1,13 @@
+AllCops:
+  Exclude:
+    - spec/spec_helper.rb
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+Metrics/LineLength:
+  Max: 120
+Metrics/MethodLength:
+  Max: 15
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - bin/console
