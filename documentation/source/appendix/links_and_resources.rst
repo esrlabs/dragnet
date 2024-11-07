@@ -25,17 +25,17 @@ Build Infrastructure
 Test Results
 ------------
 
-* `Tests Results <https://jenkins.int.esrlabs.com/job/Testing-Tools/job/dragnet/job/dragnet-verifier/Test_20Results/>`_
+* `Tests Results <../test_results/index.html>`_
 
 Static Code Analysis
 --------------------
 
-* `Rubocop Report <https://jenkins.int.esrlabs.com/job/Testing-Tools/job/dragnet/job/dragnet-verifier/Rubocop_20Report/>`_
+* `Rubocop Report <../static_code_analysis/index.html>`_
 
 Code Coverage
 -------------
 
-* `Code Coverage Report <https://jenkins.int.esrlabs.com/job/Testing-Tools/job/dragnet/job/dragnet-verifier/Coverage_20Report/>`_
+* `Code Coverage Report <../coverage/index.html>`_
 
 Requirements Coverage
 ---------------------
