@@ -18,9 +18,9 @@ Module Documentation
 Build Infrastructure
 --------------------
 
-* `Verifier and Builder <https://jenkins.int.esrlabs.com/job/Testing-Tools/job/dragnet/job/dragnet-verifier/>`_
-* `Docs Builder <https://jenkins.int.esrlabs.com/job/Testing-Tools/job/dragnet/job/documentation/>`_
-* `Style-checker (linters) <https://jenkins.int.esrlabs.com/job/Testing-Tools/job/dragnet/job/dragnet-style-checker/>`_
+* `Verifier <https://github.com/esrlabs/dragnet/actions/workflows/ruby-tests.yml>`_
+* `Docs Builder <https://github.com/esrlabs/dragnet/actions/workflows/sphinx-doc.yml>`_
+* `Style-checker (linters) <https://github.com/esrlabs/dragnet/actions/workflows/ruby-linters.yml>`_
 
 Test Results
 ------------
