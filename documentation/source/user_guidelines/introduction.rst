@@ -29,7 +29,7 @@ you can use the CLI to execute the tool.
 
 To install dragnet tool::
 
-  gem install -s https://gems.int.esrlabs.com dragnet
+  gem install dragnet
 
 Needed configuration
 --------------------
