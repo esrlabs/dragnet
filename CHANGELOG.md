@@ -8,6 +8,8 @@ Please mark backwards incompatible changes with an exclamation mark at the start
 
 ## [Unreleased]
 
+## [5.2.1] - 2024-11-13
+
 ### Fixed
 - Made the date/time format used for the `started_at` and `finished_at`
   attributes in the exported JSON files stable.
