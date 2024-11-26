@@ -1,0 +1,31 @@
+# This workflow runs Rubocop on the Pull Requests to make sure no linter warnings slip by.
+
+name: Verify Requirements
+
+on:
+  pull_request:
+    branches: [ "master" ]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+
+    runs-on: ubuntu-latest
+
+    env:
+      BUNDLE_ONLY: requirements
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '2.7'
+    - name: Install Gems
+      run: |
+        bundler install
+    - name: Check Requirements
+      run: |
+        bundler exec dim check -i req/config.yml
