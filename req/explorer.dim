@@ -1,6 +1,6 @@
-module: Explorer
+module: SRS_Explorer
 
-DRAGNET_0001:
+SRS_DRAGNET_0001:
   text:            |
                    The path where the MTR files are stored shall be
                    configurable.
@@ -8,7 +8,7 @@ DRAGNET_0001:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0002:
+SRS_DRAGNET_0002:
   text:            |
                    It shall be possible to define a glob pattern to search for
                    MTR files inside the defined path.
@@ -16,7 +16,7 @@ DRAGNET_0002:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0033:
+SRS_DRAGNET_0033:
   text:            |
                    The Explorer shall notify the user and fail the build when it
                    cannot find any MTR files in the specified path using the

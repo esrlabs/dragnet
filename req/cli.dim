@@ -1,13 +1,13 @@
-module: CLI
+module: SRS_CLI
 
-DRAGNET_0017:
+SRS_DRAGNET_0017:
   text:            |
                    Dragnet shall provide a CLI to use the tool.
   tags:            covered, tested
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0018:
+SRS_DRAGNET_0018:
   text:            |
                    The CLI shall provide a command to run the verification
                    process.
@@ -15,7 +15,7 @@ DRAGNET_0018:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0019:
+SRS_DRAGNET_0019:
   text:            |
                    Configuration shall be loaded by default from the
                    .dragnet.yaml file (in the current working directory) if no
@@ -24,7 +24,7 @@ DRAGNET_0019:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0020:
+SRS_DRAGNET_0020:
   text:            |
                    It shall be possible to provide a configuration file via a
                    command line switch.
@@ -32,16 +32,16 @@ DRAGNET_0020:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0021:
+SRS_DRAGNET_0021:
   text:            |
                    The CLI shall provide a switch that allows the verification
                    process's results to be exported to an HTML file.
   tags:            covered, tested
-  refs:            DRAGNET_0022, DRAGNET_0023, DRAGNET_0024, DRAGNET_0025
+  refs:            SRS_DRAGNET_0022, SRS_DRAGNET_0023, SRS_DRAGNET_0024, SRS_DRAGNET_0025
   test_setups:     none
   status:          valid
 
-DRAGNET_0026:
+SRS_DRAGNET_0026:
   text:            |
                    It shall be possible to configure the CLI to either produce
                    output or stay silent during the Verification Process (via
@@ -50,7 +50,7 @@ DRAGNET_0026:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0032:
+SRS_DRAGNET_0032:
   text:            |
                    When the CLI produces output it shall list at the top all
                    the MTR files it found.
@@ -58,7 +58,7 @@ DRAGNET_0032:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0027:
+SRS_DRAGNET_0027:
   text:            |
                    When the CLI produces output it shall list the MTRs as it
                    checks them.
@@ -66,7 +66,7 @@ DRAGNET_0027:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0028:
+SRS_DRAGNET_0028:
   text:            |
                    When the CLI produces output it shall display the result of
                    the verification for each MTR, "PASSED", "FAILED" or
@@ -76,7 +76,7 @@ DRAGNET_0028:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0029:
+SRS_DRAGNET_0029:
   text:            |
                    When the CLI produces output it shall print the reason for
                    a failure or a skipped test, for example "changed detected on
@@ -85,7 +85,7 @@ DRAGNET_0029:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0034:
+SRS_DRAGNET_0034:
   text:            |
                    Configuration errors shall be reported immediately and the
                    verification process shall be aborted right away.
