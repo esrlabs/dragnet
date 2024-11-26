@@ -1,6 +1,6 @@
-module: Verifier
+module: SRS_Verifier
 
-DRAGNET_0011:
+SRS_DRAGNET_0011:
   text:            |
                    If the "result" field has the value "failed", the Manual
                    Tests shall be marked as failed.
@@ -8,7 +8,7 @@ DRAGNET_0011:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0012:
+SRS_DRAGNET_0012:
   text:            |
                    If a MTR lists files and there has been any change to the
                    listed files after the revision specified in the "sha1"
@@ -17,7 +17,7 @@ DRAGNET_0012:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0014:
+SRS_DRAGNET_0014:
   text:            |
                    If a MTR lists glob patterns and any file matched by the glob
                    pattern has changed since the revision specified in the
@@ -27,16 +27,16 @@ DRAGNET_0014:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0050:
+SRS_DRAGNET_0050:
   text:            |
                    If the MTR lists repositories, each individual repository
                    shall be checked.
   tags:            covered, tested
   status:          valid
   test_setups:     off_target
-  refs:            DRAGNET_0051, DRAGNET_0053, DRAGNET_0059, DRAGNET_0045
+  refs:            SRS_DRAGNET_0051, SRS_DRAGNET_0053, SRS_DRAGNET_0059, SRS_DRAGNET_0045
 
-DRAGNET_0045:
+SRS_DRAGNET_0045:
   text:            |
                    If the "path" attribute doesn't point to a valid git
                    repository the MTR shall be considered invalid.
@@ -44,7 +44,7 @@ DRAGNET_0045:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0059:
+SRS_DRAGNET_0059:
   text:           |
                   If the verification of any the listed repositories fails the
                   MTR shall be considered invalid.
@@ -52,7 +52,7 @@ DRAGNET_0059:
   test_setups:    off_target
   status:         valid
 
-DRAGNET_0051:
+SRS_DRAGNET_0051:
   text:            |
                    If the repository lists files, Dragnet shall verify that none
                    of those files have changed between the revision specified by
@@ -60,9 +60,9 @@ DRAGNET_0051:
   tags:            covered, tested
   status:          valid
   test_setups:     off_target
-  refs:            DRAGNET_0052
+  refs:            SRS_DRAGNET_0052
 
-DRAGNET_0052:
+SRS_DRAGNET_0052:
   text:            |
                    If changes are detected between the two revisions, the MTR
                    shall be marked as Skipped.
@@ -70,7 +70,7 @@ DRAGNET_0052:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0053:
+SRS_DRAGNET_0053:
   text:            |
                    If no "files" attribute is given, then Dragnet shall verify
                    that no changes have been done to the repository between the
@@ -79,9 +79,9 @@ DRAGNET_0053:
   tags:            covered, tested
   test_setups:     off_target
   status:          valid
-  refs:            DRAGNET_0054
+  refs:            SRS_DRAGNET_0054
 
-DRAGNET_0054:
+SRS_DRAGNET_0054:
   text:            |
                    If changes are detected between the two revisions, the MTR
                    shall be marked as Skipped.
@@ -89,7 +89,7 @@ DRAGNET_0054:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0015:
+SRS_DRAGNET_0015:
   text:            |
                    If the MTR doesn't list any files and there are any changes
                    to the repository since the revision specified in the "sha1"
@@ -99,7 +99,7 @@ DRAGNET_0015:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0016:
+SRS_DRAGNET_0016:
   text:            |
                    The Manual Test is marked as passed if:
                      - The "result" field's value is "passed".
@@ -113,7 +113,7 @@ DRAGNET_0016:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0030:
+SRS_DRAGNET_0030:
   text:            |
                    The Verifier shall run through the whole set of MTR without
                    stopping because of failures, format errors or invalid files.
@@ -123,7 +123,7 @@ DRAGNET_0030:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0031:
+SRS_DRAGNET_0031:
   text:            |
                    The verifier shall not print anything to the console, it
                    shall be left to the exporter and or the CLI to take care of
@@ -132,15 +132,15 @@ DRAGNET_0031:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0074:
+SRS_DRAGNET_0074:
   text:            |
                    The result of the verification shall include information on
                    when the verification was executed and how much time it took.
   test_setups:     none
   status:          valid
-  refs:            DRAGNET_0075, DRAGNET_0076, DRAGNET_0077
+  refs:            SRS_DRAGNET_0075, SRS_DRAGNET_0076, SRS_DRAGNET_0077
 
-DRAGNET_0075:
+SRS_DRAGNET_0075:
   text:            |
                    The result of the verification shall include a timestamp to
                    mark the start of the verification.
@@ -148,7 +148,7 @@ DRAGNET_0075:
   status:          valid
   tags:            covered, tested
 
-DRAGNET_0076:
+SRS_DRAGNET_0076:
   text:            |
                    The result of the verification shall include a timestamp to
                    mark the completion of the verification.
@@ -156,7 +156,7 @@ DRAGNET_0076:
   status:          valid
   tags:            covered, tested
 
-DRAGNET_0077:
+SRS_DRAGNET_0077:
   text:            |
                    The result of the verification shall include its runtime,
                    this is, the number of seconds elapsed between the start and

@@ -1,6 +1,6 @@
-module: Validator
+module: SRS_Validator
 
-DRAGNET_0003:
+SRS_DRAGNET_0003:
   text:            |
                    The Validator shall verify that the loaded MTR files are valid
                    YAML files.
@@ -8,22 +8,22 @@ DRAGNET_0003:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0004:
+SRS_DRAGNET_0004:
   text:            |
                    The MTR files can contain a list of tested files.
   tags:            covered, tested
-  refs:            DRAGNET_0055, DRAGNET_0013, DRAGNET_0005, DRAGNET_0072
+  refs:            SRS_DRAGNET_0055, SRS_DRAGNET_0013, SRS_DRAGNET_0005, SRS_DRAGNET_0072
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0055:
+SRS_DRAGNET_0055:
   text:            |
                    The list of files shall not be mandatory.
   tags:            covered, tested
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0013:
+SRS_DRAGNET_0013:
   text:            |
                    The "files" field can contain glob patterns as well as
                    individual files from a single repository.
@@ -31,7 +31,7 @@ DRAGNET_0013:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0005:
+SRS_DRAGNET_0005:
   text:            |
                    If the MTR file contains a set of tested files The Validator
                    shall verify that the files exist in the repository.
@@ -39,7 +39,7 @@ DRAGNET_0005:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0072:
+SRS_DRAGNET_0072:
   text:            |
                    The listed files or glob patterns shall be considered
                    relative to the path being checked by Dragnet, even if they
@@ -48,22 +48,22 @@ DRAGNET_0072:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0035:
+SRS_DRAGNET_0035:
   text:            |
                    The MTR files may contain a list of repositories.
   tags:            covered, tested
   status:          valid
   test_setups:     off_target
-  refs:            DRAGNET_0056, DRAGNET_0036, DRAGNET_0037
+  refs:            SRS_DRAGNET_0056, SRS_DRAGNET_0036, SRS_DRAGNET_0037
 
-DRAGNET_0056:
+SRS_DRAGNET_0056:
   text:            |
                    The list of repositories shall not be mandatory.
   tags:            covered, tested
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0036:
+SRS_DRAGNET_0036:
   text:            |
                    If the MTR file contains a list of files it cannot contain a
                    list of repositories as well.
@@ -71,24 +71,24 @@ DRAGNET_0036:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0037:
+SRS_DRAGNET_0037:
   text:            |
                    The "repos" field shall contain an array of Objects.
   tags:            covered, tested
   status:          valid
   test_setups:     off_target
-  refs:            DRAGNET_0038
+  refs:            SRS_DRAGNET_0038
 
-DRAGNET_0038:
+SRS_DRAGNET_0038:
   text:            |
                    The objects in the "repos" field shall contain the following
                    attributes: "path", "sha1" and optionally "files".
   tags:            covered, tested
   status:          valid
   test_setups:     none
-  refs:            DRAGNET_0039, DRAGNET_0040, DRAGNET_0041, DRAGNET_0049
+  refs:            SRS_DRAGNET_0039, SRS_DRAGNET_0040, SRS_DRAGNET_0041, SRS_DRAGNET_0049
 
-DRAGNET_0039:
+SRS_DRAGNET_0039:
   text:            |
                    The "path" attribute defines the path where the repository
                    can be found. It can be either a relative path to the current
@@ -96,18 +96,18 @@ DRAGNET_0039:
   status:          valid
   tags:            covered, tested
   test_setups:     off_target
-  refs:            DRAGNET_0042
+  refs:            SRS_DRAGNET_0042
 
-DRAGNET_0042:
+SRS_DRAGNET_0042:
   text:            |
                    Dragnet shall verify that the "path" attribute contains a
                    valid path.
   status:          valid
   tags:            covered, tested
   test_setups:     off_target
-  refs:            DRAGNET_0058
+  refs:            SRS_DRAGNET_0058
 
-DRAGNET_0058:
+SRS_DRAGNET_0058:
   text:            |
                    If the "path" attribute doesn't point to an existing path
                    the MTR shall be considered invalid.
@@ -115,7 +115,7 @@ DRAGNET_0058:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0040:
+SRS_DRAGNET_0040:
   text:            |
                    The "sha1" attribute shall contain the SHA1 the repository had
                    when the manual test was performed. This will be used to
@@ -123,17 +123,17 @@ DRAGNET_0040:
   status:          valid
   tags:            covered, tested
   test_setups:     none
-  refs:            DRAGNET_0043
+  refs:            SRS_DRAGNET_0043
 
-DRAGNET_0043:
+SRS_DRAGNET_0043:
   text:            |
                    Dragnet shall verify that the given SHA1 is a valid SHA1
   status:          valid
   tags:            covered, tested
   test_setups:     off_target
-  refs:            DRAGNET_0046
+  refs:            SRS_DRAGNET_0046
 
-DRAGNET_0046:
+SRS_DRAGNET_0046:
   text:            |
                    If the "sha1" attribute doesn't contain a valid SHA1 the MTR
                    shall be considered invalid.
@@ -141,7 +141,7 @@ DRAGNET_0046:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0041:
+SRS_DRAGNET_0041:
   text:            |
                    The "files" attribute shall contain a list of individual files
                    or glob patterns, these refer to files inside the repository
@@ -149,25 +149,25 @@ DRAGNET_0041:
   tags:            covered, tested
   test_setups:     off_target
   status:          valid
-  refs:            DRAGNET_0044, DRAGNET_0073
+  refs:            SRS_DRAGNET_0044, SRS_DRAGNET_0073
 
-DRAGNET_0049:
+SRS_DRAGNET_0049:
   text:            |
                    The "files" attribute shall not be mandatory.
   tags:            covered, tested
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0044:
+SRS_DRAGNET_0044:
   text:            |
                    Dragnet shall verify that all the listed files (or the files
                    the glob patterns resolve to) exist in the repository.
   status:          valid
   tags:            covered, tested
   test_setups:     off_target
-  refs:            DRAGNET_0047, DRAGNET_0048
+  refs:            SRS_DRAGNET_0047, SRS_DRAGNET_0048
 
-DRAGNET_0073:
+SRS_DRAGNET_0073:
   text:            |
                    The listed files or glob patterns shall be considered
                    relative to the repository root, even if they start with
@@ -176,7 +176,7 @@ DRAGNET_0073:
   status:          valid
   test_setups:     off_target
 
-DRAGNET_0047:
+SRS_DRAGNET_0047:
   text:            |
                    If one or more of the files listed in the "files" attribute
                    doesn't exist the MTR shall be considered invalid.
@@ -184,7 +184,7 @@ DRAGNET_0047:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0048:
+SRS_DRAGNET_0048:
   text:            |
                    If the "files" attribute contains only glob patterns they
                    should resolve to at least one file. If no files are matched
@@ -193,7 +193,7 @@ DRAGNET_0048:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0006:
+SRS_DRAGNET_0006:
   text:            |
                    The MTR file shall contain the SHA1 on which the tests were
                    carried out. The Validator shall verify that the SHA1 is
@@ -202,7 +202,7 @@ DRAGNET_0006:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0057:
+SRS_DRAGNET_0057:
   text:            |
                    The MTR may contain a SHA1 attribute or a list of
                    repositories but NOT both.
@@ -210,7 +210,7 @@ DRAGNET_0057:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0007:
+SRS_DRAGNET_0007:
   text:            |
                    MTR files shall contain an "id" field, this must contain the
                    ID of the requirement being tested or an array of IDs being
@@ -219,7 +219,7 @@ DRAGNET_0007:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0008:
+SRS_DRAGNET_0008:
   text:            |
                    MTR files shall contain a "result" field. The field can
                    either be "passed" or "failed".
@@ -227,21 +227,21 @@ DRAGNET_0008:
   test_setups:     off_target
   status:          valid
 
-DRAGNET_0009:
+SRS_DRAGNET_0009:
   text:            |
                    FuSa related tests shall have the "reviewstatus",
                    "reviewcomments" and "findings" fields.
   test_setups:     off_target
   status:          draft
 
-DRAGNET_0010:
+SRS_DRAGNET_0010:
   text:            |
                    The Validator shall be able to check if a test is related to
                    Functional Safety (FuSa).
   test_setups:     off_target
   status:          draft
 
-DRAGNET_0068:
+SRS_DRAGNET_0068:
   text:            |
                    MTR Files may contain the following additional meta-data
                    attributes, none of which shall be mandatory:
