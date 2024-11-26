@@ -16,3 +16,7 @@ group :linting do
   gem 'rubocop', '~> 1'
   gem 'rubocop-rspec', '~> 3'
 end
+
+group :requirements do
+  gem 'dim-toolkit', '2.1.1' # Fixed to a minor because the Gem doesn't follow semantic versioning.
+end
