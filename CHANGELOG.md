@@ -8,6 +8,9 @@ Please mark backwards incompatible changes with an exclamation mark at the start
 
 ## [Unreleased]
 
+### Changed
+- The `description` field will now be rendered as Markdown in the HTML report.
+
 ## [5.2.1] - 2024-11-13
 
 ### Fixed

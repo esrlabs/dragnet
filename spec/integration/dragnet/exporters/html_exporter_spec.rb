@@ -2,6 +2,7 @@
 
 require 'active_support'
 require 'active_support/core_ext/array/access'
+require 'active_support/core_ext/string'
 require 'fileutils'
 require 'logger'
 require 'tmpdir'
@@ -465,6 +466,15 @@ RSpec.describe Dragnet::Exporters::HTMLExporter, requirements: ['SRS_DRAGNET_002
         Dragnet::TestRecord.new(sha1: '04aec23' ).tap do |test_record|
           test_record.source_file = temp_dir / 'source' / 'tests' / 'manual' / 'safe_e2e.yaml'
           test_record.verification_result = Dragnet::VerificationResult.new(status: :passed)
+          test_record.description = <<~TEXT
+            This test checks that all the safety-relevant E2E protections are enabled.
+
+            To do this:
+
+            1. Make sure that none of the following compiler flags were set:
+               `DISABLE_MMU`, `WATCHDOG_OFF`, `LOG_FULL_STRINGS`, `DIAG_ALLOW_ALL`
+            2. Make sure that the ECU does not allow to change out of "Field Mode"
+          TEXT
         end,
         Dragnet::TestRecord.new(sha1: 'f13dbbc' ).tap do |test_record|
           test_record.source_file = temp_dir / 'source' / 'tests' / 'manual/io_vectors.yaml'
@@ -498,6 +508,42 @@ RSpec.describe Dragnet::Exporters::HTMLExporter, requirements: ['SRS_DRAGNET_002
       ]
     end
 
+    let(:expected_description) do
+      'This test checks that all the safety-relevant E2E protections are enabled.<br /><br />' \
+        'To do this:<br /><br />' \
+        '1. Make sure that none of the following compiler flags were set:<br />' \
+        '   `DISABLE_MMU`, `WATCHDOG_OFF`, `LOG_FULL_STRINGS`, `DIAG_ALLOW_ALL`<br />' \
+        '2. Make sure that the ECU does not allow to change out of "Field Mode"<br />'
+    end
+
+    let(:marked_invocation_fragment) do
+      <<~JAVASCRIPT.indent(14)
+        const source = element.innerText
+        element.innerHTML = marked.parse(source)
+      JAVASCRIPT
+    end
+
+    let(:markdown_transform_script) do
+      <<-HTML
+        <script type="text/javascript">
+          elements = document.getElementsByClassName('md-description')
+
+          for(let element of elements) {
+              const source = element.innerText
+              element.innerHTML = marked.parse(source)
+          }
+        </script>
+      HTML
+    end
+
+    let(:expected_dd_tag) do
+      <<~HTML.indent(52)
+        <dd class="col-9 md-description">
+          #{expected_description}
+        </dd>
+      HTML
+    end
+
     it 'does not include the full repository path' do
       expect(output).not_to include(temp_dir.to_s)
     end
@@ -519,6 +565,28 @@ RSpec.describe Dragnet::Exporters::HTMLExporter, requirements: ['SRS_DRAGNET_002
       expect(output).to include('changes detected in the repository f13dbbc..6e94407')
         .and include("result key has the value 'failed'")
     end
+
+    it 'renders the descriptions in a <dd> element with the "md-description" class',
+       requirements: %w[SRS_DRAGNET_0079] do
+      expect(output).to include(expected_dd_tag)
+    end
+
+    it 'renders the description text with line breaks (<br />)', requirements: %w[SRS_DRAGNET_0079] do
+      expect(output).to include(expected_description)
+    end
+
+    it 'includes the <script> tag for the Marked plug-in', requirements: %w[SRS_DRAGNET_0079] do
+      expect(output).to include('<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>')
+    end
+
+    it 'includes the script that transforms "descriptions" into Markdown',
+       requirements: %w[SRS_DRAGNET_0079 SRS_DRAGNET_0080] do
+      expect(output).to include(markdown_transform_script)
+    end
+
+    it 'uses the innerText attribute to remove the HTML tags before passing the text to Marked',
+       requirements: %w[SRS_DRAGNET_0080] do
+      expect(output).to include(marked_invocation_fragment)
+    end
   end
 end
-
