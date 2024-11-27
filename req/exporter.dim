@@ -7,6 +7,7 @@ SRS_DRAGNET_0022:
   tags:            covered, tested
   test_setups:     off_target
   status:          valid
+  refs:            SRS_DRAGNET_0079
 
 SRS_DRAGNET_0023:
   text:            |
@@ -142,5 +143,21 @@ SRS_DRAGNET_0067:
                    Only the first 16 characters of the resulting SHA1 shall be
                    used.
   tags:            covered, tested
+  test_setups:     off_target
+  status:          valid
+
+SRS_DRAGNET_0079:
+  text:            |
+                   The MTR's 'description' field shall be rendered as Markdown
+                   in the exported HTML.
+  test_setups:     off_target
+  status:          valid
+  refs:            SRS_DRAGNET_0080
+
+SRS_DRAGNET_0080:
+  text:            |
+                   The 'description' text shall be sanitized **BEFORE**
+                   rendering it as Markdown to prevent XSS in the generated HTML
+                   report.
   test_setups:     off_target
   status:          valid
