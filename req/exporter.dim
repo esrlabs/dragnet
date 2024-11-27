@@ -151,6 +151,7 @@ SRS_DRAGNET_0079:
                    The MTR's 'description' field shall be rendered as Markdown
                    in the exported HTML.
   test_setups:     off_target
+  tags:            covered, tested
   status:          valid
   refs:            SRS_DRAGNET_0080
 
@@ -159,5 +160,6 @@ SRS_DRAGNET_0080:
                    The 'description' text shall be sanitized **BEFORE**
                    rendering it as Markdown to prevent XSS in the generated HTML
                    report.
+  tags:            covered, tested
   test_setups:     off_target
   status:          valid
