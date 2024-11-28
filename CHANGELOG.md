@@ -8,6 +8,9 @@ Please mark backwards incompatible changes with an exclamation mark at the start
 
 ## [Unreleased]
 
+### Added
+- The JSON export now includes the path to the MTR files.
+
 ### Changed
 - The `description` field will now be rendered as Markdown in the HTML report.
 

@@ -148,6 +148,7 @@ RSpec.describe Dragnet::Exporters::JSONExporter do
             '"refs":["ESR_REQ_9126"],' \
             '"result":"passed",' \
             '"review_status":"not_reviewed",' \
+            '"mtr_file":"MTR/PD_3234_voltage.yaml",' \
             '"verification_result":{' \
               '"status":"skipped",' \
               '"started_at":"2024-02-27 14:36:07 +0000",' \
@@ -168,6 +169,7 @@ RSpec.describe Dragnet::Exporters::JSONExporter do
             '"refs":["ESR_REQ_7817","ESR_REQ_3636"],' \
             '"result":"passed",' \
             '"review_status":"reviewed",' \
+            '"mtr_file":"MTR/validators.yaml",' \
             '"verification_result":{' \
               '"status":"passed",' \
               '"started_at":"2024-02-27 14:21:16 +0000",' \
@@ -190,6 +192,7 @@ RSpec.describe Dragnet::Exporters::JSONExporter do
             '"refs":["ESR_REQ_7661"],' \
             '"result":"failed",' \
             '"review_status":"not_reviewed",' \
+            '"mtr_file":"MTR/crypto/diffie.yaml",' \
             '"verification_result":{' \
               '"status":"failed",' \
               '"started_at":"2024-02-27 14:22:04 +0000",' \
@@ -243,6 +246,10 @@ RSpec.describe Dragnet::Exporters::JSONExporter do
 
         it 'includes the Verification Result for each MTR', requirements: %w[SRS_DRAGNET_0062] do
           expect(verification_results).to all(be_a(Hash))
+        end
+
+        it "includes the MTRs' file names", requirements: %w[SRS_DRAGNET_0081] do
+          expect(re_parsed_json).to all(have_key('mtr_file'))
         end
 
         it 'includes the start_at attribute in each Verification Result', requirements: %w[SRS_DRAGNET_0078] do

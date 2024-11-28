@@ -166,5 +166,6 @@ SRS_DRAGNET_0080:
 SRS_DRAGNET_0081:
   text:            |
                    The JSON exporter shall export the MTR's filename.
+  tags:            covered, tested
   test_setups:     off_target
   status:          valid
