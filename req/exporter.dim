@@ -41,7 +41,8 @@ SRS_DRAGNET_0060:
   test_setups:     off_target
   tags:            covered, tested
   status:          valid
-  refs:            SRS_DRAGNET_0061, SRS_DRAGNET_0062, SRS_DRAGNET_0063, SRS_DRAGNET_0064, SRS_DRAGNET_0065
+  refs:            SRS_DRAGNET_0061, SRS_DRAGNET_0062, SRS_DRAGNET_0063, SRS_DRAGNET_0064, SRS_DRAGNET_0065,
+                   SRS_DRAGNET_0081
 
 SRS_DRAGNET_0061:
   text:            |
@@ -161,5 +162,9 @@ SRS_DRAGNET_0080:
                    rendering it as Markdown to prevent XSS in the generated HTML
                    report.
   tags:            covered, tested
+
+SRS_DRAGNET_0081:
+  text:            |
+                   The JSON exporter shall export the MTR's filename.
   test_setups:     off_target
   status:          valid
