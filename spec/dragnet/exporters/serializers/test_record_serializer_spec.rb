@@ -82,7 +82,7 @@ RSpec.describe Dragnet::Exporters::Serializers::TestRecordSerializer do
     context 'when the ID of the Test Record is a String' do
       let(:id) { 'ESR_REQ_7630' }
 
-      it 'includes the expected Array of "refs"', requirements: %w[DRAGNET_0064] do
+      it 'includes the expected Array of "refs"', requirements: %w[SRS_DRAGNET_0064] do
         expect(method_call).to include(refs: [id])
       end
     end
@@ -90,7 +90,7 @@ RSpec.describe Dragnet::Exporters::Serializers::TestRecordSerializer do
     context 'when the ID of the Test Record is an Array' do
       let(:id) { %w[ESR_REQ_1008 ESR_REQ_1065] }
 
-      it 'includes the expected Array of "refs"', requirements: %w[DRAGNET_0064] do
+      it 'includes the expected Array of "refs"', requirements: %w[SRS_DRAGNET_0064] do
         expect(method_call).to include(refs: id)
       end
     end
@@ -118,7 +118,7 @@ RSpec.describe Dragnet::Exporters::Serializers::TestRecordSerializer do
     context "when the TestRecord doesn't have the tester's name" do
       let(:name) { nil }
 
-      it 'does not include the :owner key', requirements: %w[DRAGNET_0071] do
+      it 'does not include the :owner key', requirements: %w[SRS_DRAGNET_0071] do
         expect(method_call).not_to have_key(:owner)
       end
     end
@@ -127,7 +127,7 @@ RSpec.describe Dragnet::Exporters::Serializers::TestRecordSerializer do
       context 'when there is a single tester' do
         let(:name) { ['Freddy Mercury'] }
 
-        it "includes the tester's name (as 'owner')", requirements: %w[DRAGNET_0065] do
+        it "includes the tester's name (as 'owner')", requirements: %w[SRS_DRAGNET_0065] do
           expect(method_call).to include(owner: 'Freddy Mercury')
         end
       end
@@ -135,7 +135,7 @@ RSpec.describe Dragnet::Exporters::Serializers::TestRecordSerializer do
       context 'when there are multiple testers' do
         let(:name) { ['Freddy Mercury', 'Brian May', 'John Deacon', 'Roger Taylor'] }
 
-        it "includes all the testers' names as a single string", requirements: %w[DRAGNET_0071] do
+        it "includes all the testers' names as a single string", requirements: %w[SRS_DRAGNET_0071] do
           expect(method_call).to include(owner: 'Freddy Mercury, Brian May, John Deacon, Roger Taylor')
         end
       end
@@ -166,12 +166,12 @@ RSpec.describe Dragnet::Exporters::Serializers::TestRecordSerializer do
     context "when the TestRecord doesn't have a test method" do
       let(:test_method) { nil }
 
-      it 'does not include the :test_method key', requirements: %w[DRAGNET_0070] do
+      it 'does not include the :test_method key', requirements: %w[SRS_DRAGNET_0070] do
         expect(method_call).not_to have_key(:test_method)
       end
     end
 
-    context 'when the TestRecord has a test method', requirements: %w[DRAGNET_0070] do
+    context 'when the TestRecord has a test method', requirements: %w[SRS_DRAGNET_0070] do
       context 'when there is a single method' do
         let(:test_method) { 'Failure injection' }
 
@@ -192,12 +192,12 @@ RSpec.describe Dragnet::Exporters::Serializers::TestRecordSerializer do
     context "when the TestRecord doesn't have a derivation method" do
       let(:tc_derivation_method) { nil }
 
-      it 'does not include the :tc_derivation_method key', requirements: %w[DRAGNET_0070] do
+      it 'does not include the :tc_derivation_method key', requirements: %w[SRS_DRAGNET_0070] do
         expect(method_call).not_to have_key(:tc_derivation_method)
       end
     end
 
-    context 'when the TestRecord has a derivation method', requirements: %w[DRAGNET_0070] do
+    context 'when the TestRecord has a derivation method', requirements: %w[SRS_DRAGNET_0070] do
       context 'when there is a single method' do
         let(:tc_derivation_method) { 'Decision tree' }
 

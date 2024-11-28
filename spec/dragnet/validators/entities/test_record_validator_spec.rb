@@ -119,19 +119,19 @@ RSpec.describe Dragnet::Validators::Entities::TestRecordValidator do
     context 'when the MTR has neither a `files` nor a `repos` attribute' do
       let(:files) { nil }
 
-      it 'passes the validation', requirements: %w[DRAGNET_0055 DRAGNET_0056] do
+      it 'passes the validation', requirements: %w[SRS_DRAGNET_0055 SRS_DRAGNET_0056] do
         expect { method_call }.not_to raise_error
       end
     end
 
     context 'when the MTR has a `files` attribute but no `repos` attribute' do
-      it 'passes the validation', requirements: %w[DRAGNET_0004] do
+      it 'passes the validation', requirements: %w[SRS_DRAGNET_0004] do
         expect { method_call }.not_to raise_error
       end
     end
 
     context 'when the MTR has a `repos` attribute but no `files` attribute' do
-      it 'passes the validation', requirements: %w[DRAGNET_0035] do
+      it 'passes the validation', requirements: %w[SRS_DRAGNET_0035] do
         expect { method_call }.not_to raise_error
       end
     end
@@ -144,7 +144,7 @@ RSpec.describe Dragnet::Validators::Entities::TestRecordValidator do
         ]
       end
 
-      it 'fails the validation', requirements: %w[DRAGNET_0036] do
+      it 'fails the validation', requirements: %w[SRS_DRAGNET_0036] do
         expect { method_call }.to raise_error(
           Dragnet::Errors::ValidationError,
           "Invalid MTR: ESR_REQ_5435. Either 'files' or 'repos' should be provided, not both"
@@ -153,12 +153,12 @@ RSpec.describe Dragnet::Validators::Entities::TestRecordValidator do
     end
 
     context 'when the MTR has a SHA1 but not a list of repositories' do
-      it 'uses the SHA1 Validator to validate', requirements: ['DRAGNET_0006'] do
+      it 'uses the SHA1 Validator to validate', requirements: ['SRS_DRAGNET_0006'] do
         expect(sha1_validator).to receive(:validate).with('sha1', sha1)
         method_call
       end
 
-      context 'when the SHA1 validation fails', requirements: ['DRAGNET_0006'] do
+      context 'when the SHA1 validation fails', requirements: ['SRS_DRAGNET_0006'] do
         let(:exception) { Dragnet::Errors::ValidationError }
         let(:message) { 'missing key sha1' }
         let(:validator) { sha1_validator }
@@ -179,7 +179,7 @@ RSpec.describe Dragnet::Validators::Entities::TestRecordValidator do
       let(:files) { nil }
       let(:repos) { [{ a: 'repo' }, { b: 'repo' }, { c: 'repo' }] }
 
-      it 'raises a Dragnet::Errors::ValidationError', requirements: %w[DRAGNET_0057] do
+      it 'raises a Dragnet::Errors::ValidationError', requirements: %w[SRS_DRAGNET_0057] do
         expect { method_call }.to raise_error(
           Dragnet::Errors::ValidationError,
           "Invalid MTR: ESR_REQ_5435. Either 'repos' or 'sha1' should be provided, not both"
@@ -238,13 +238,13 @@ RSpec.describe Dragnet::Validators::Entities::TestRecordValidator do
         [instance_double(Dragnet::Repo), instance_double(Dragnet::Repo)]
       end
 
-      it 'does not validate the SHA1 attribute', requirements: ['DRAGNET_0057'] do
+      it 'does not validate the SHA1 attribute', requirements: ['SRS_DRAGNET_0057'] do
         expect(Dragnet::Validators::Fields::SHA1Validator).not_to receive(:new)
         expect(sha1_validator).not_to receive(:validate)
         method_call
       end
 
-      it 'uses the ReposValidator to validate the repos', requirements: ['DRAGNET_0037'] do
+      it 'uses the ReposValidator to validate the repos', requirements: ['SRS_DRAGNET_0037'] do
         expect(repos_validator).to receive(:validate).with('repos', repos)
         method_call
       end
@@ -284,7 +284,7 @@ RSpec.describe Dragnet::Validators::Entities::TestRecordValidator do
       include_context 'when an individual validator fails'
     end
 
-    describe 'meta-data validation', requirements: %w[DRAGNET_0068] do
+    describe 'meta-data validation', requirements: %w[SRS_DRAGNET_0068] do
       let(:name) { 'Bruce Willis' }
       let(:test_method) { 'Nuclear explosion' }
       let(:tc_derivation_method) { 'BVA' }

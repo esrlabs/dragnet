@@ -132,7 +132,7 @@ RSpec.describe Dragnet::Exporter do
         method_call
       end
 
-      it 'writes the output to the JSON target', requirements: %w[DRAGNET_0060] do
+      it 'writes the output to the JSON target', requirements: %w[SRS_DRAGNET_0060] do
         expect(File).to receive(:write).with('output/report.json', json_output)
         method_call
       end

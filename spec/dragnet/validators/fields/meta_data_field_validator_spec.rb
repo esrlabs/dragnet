@@ -2,7 +2,7 @@
 
 require 'dragnet/validators/fields/meta_data_field_validator'
 
-RSpec.describe Dragnet::Validators::Fields::MetaDataFieldValidator, requirements: %w[DRAGNET_0068] do
+RSpec.describe Dragnet::Validators::Fields::MetaDataFieldValidator, requirements: %w[SRS_DRAGNET_0068] do
   subject(:meta_data_field_validator) { described_class.new }
 
   describe '#validate' do

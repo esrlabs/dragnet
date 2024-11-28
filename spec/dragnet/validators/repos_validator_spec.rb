@@ -114,7 +114,7 @@ RSpec.describe Dragnet::Validators::ReposValidator do
         end
       end
 
-      context 'when the repo has a relative path', requirements: %w[DRAGNET_0039] do
+      context 'when the repo has a relative path', requirements: %w[SRS_DRAGNET_0039] do
         let(:complete_path) { instance_double(Pathname, exist?: complete_exists) }
 
         it 'creates a path by joining the workspace path with the path of the repo' do
@@ -130,7 +130,7 @@ RSpec.describe Dragnet::Validators::ReposValidator do
         context "when the repo path doesn't exist" do
           let(:complete_exists) { false }
 
-          it 'raises a Dragnet::Errors::RepoPathNotFoundError', requirements: %w[DRAGNET_0058] do
+          it 'raises a Dragnet::Errors::RepoPathNotFoundError', requirements: %w[SRS_DRAGNET_0058] do
             expect { method_call }.to raise_error(
               Dragnet::Errors::RepoPathNotFoundError,
               'Cannot find the repository path path/to/repo inside /workspace/source'
@@ -139,7 +139,7 @@ RSpec.describe Dragnet::Validators::ReposValidator do
         end
       end
 
-      context 'when the repo has an absolute path', requirements: %w[DRAGNET_0039] do
+      context 'when the repo has an absolute path', requirements: %w[SRS_DRAGNET_0039] do
         it 'verifies the existence of the given path directly' do
           expect(absolute_path).to receive(:exist?)
           method_call
@@ -148,7 +148,7 @@ RSpec.describe Dragnet::Validators::ReposValidator do
         context "when the repo path doesn't exist" do
           let(:absolute_exists) { false }
 
-          it 'raises a Dragnet::Errors::RepoPathNotFoundError', requirements: %w[DRAGNET_0058] do
+          it 'raises a Dragnet::Errors::RepoPathNotFoundError', requirements: %w[SRS_DRAGNET_0058] do
             expect { method_call }.to raise_error(
               Dragnet::Errors::RepoPathNotFoundError,
               'Cannot find the repository path /workspace/some/other/repo'
@@ -157,7 +157,7 @@ RSpec.describe Dragnet::Validators::ReposValidator do
         end
       end
 
-      context 'when the repos have no files', requirements: %w[DRAGNET_0049] do
+      context 'when the repos have no files', requirements: %w[SRS_DRAGNET_0049] do
         let(:files) { nil }
 
         it 'does not perform any validation over files' do
@@ -182,7 +182,8 @@ RSpec.describe Dragnet::Validators::ReposValidator do
           allow(files_validator).to receive(:validate).and_raise(*expected_error)
         end
 
-        it 'raises a Dragnet::Errors::FileNotFoundError', requirements: %w[DRAGNET_0044 DRAGNET_0047 DRAGNET_0048] do
+        it 'raises a Dragnet::Errors::FileNotFoundError',
+           requirements: %w[SRS_DRAGNET_0044 SRS_DRAGNET_0047 SRS_DRAGNET_0048] do
           expect { method_call }.to raise_error(*expected_error)
         end
       end

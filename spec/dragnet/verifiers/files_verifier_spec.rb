@@ -63,13 +63,13 @@ RSpec.describe Dragnet::Verifiers::FilesVerifier do
       end
     end
 
-    context 'when there are no changes in the listed files', requirements: ['DRAGNET_0016'] do
+    context 'when there are no changes in the listed files', requirements: ['SRS_DRAGNET_0016'] do
       it 'returns nil' do
         expect(method_call).to be_nil
       end
     end
 
-    context 'when one or more of the files have changes', requirements: %w[DRAGNET_0012 DRAGNET_0014] do
+    context 'when one or more of the files have changes', requirements: %w[SRS_DRAGNET_0012 SRS_DRAGNET_0014] do
       let(:changed_diff) do
         instance_double(
           Git::Diff,

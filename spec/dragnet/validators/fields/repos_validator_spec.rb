@@ -55,7 +55,7 @@ RSpec.describe Dragnet::Validators::Fields::ReposValidator do
       end
     end
 
-    context 'when the value is an Array', requirements: ['DRAGNET_0037'] do
+    context 'when the value is an Array', requirements: ['SRS_DRAGNET_0037'] do
       context 'when the array is empty' do
         let(:value) { [] }
 

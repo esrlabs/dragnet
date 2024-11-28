@@ -60,12 +60,12 @@ RSpec.describe Dragnet::Validators::Entities::RepoValidator do
       end
     end
 
-    it 'uses the SHA1Validator class to validate the `sha1` attribute', requirements: ['DRAGNET_0043'] do
+    it 'uses the SHA1Validator class to validate the `sha1` attribute', requirements: ['SRS_DRAGNET_0043'] do
       expect(sha1_validator).to receive(:validate).with('repos[sha1]', sha1)
       method_call
     end
 
-    context 'when the SHA1Validator fails', requirements: ['DRAGNET_0046'] do
+    context 'when the SHA1Validator fails', requirements: ['SRS_DRAGNET_0046'] do
       let(:validator) { sha1_validator }
       let(:validation_error) { Dragnet::Errors::ValidationError }
       let(:message) { 'Missing required key: repos[sha1]' }
@@ -73,12 +73,12 @@ RSpec.describe Dragnet::Validators::Entities::RepoValidator do
       include_context 'when an individual validator fails'
     end
 
-    it 'uses the PathValidator class to validate the `path` attribute', requirements: ['DRAGNET_0039'] do
+    it 'uses the PathValidator class to validate the `path` attribute', requirements: ['SRS_DRAGNET_0039'] do
       expect(path_validator).to receive(:validate).with('repos[path]', path)
       method_call
     end
 
-    context 'when the PathValidator fails', requirements: ['DRAGNET_0042'] do
+    context 'when the PathValidator fails', requirements: ['SRS_DRAGNET_0042'] do
       let(:validator) { path_validator }
       let(:validation_error) { Dragnet::Errors::ValidationError }
 
@@ -89,7 +89,7 @@ RSpec.describe Dragnet::Validators::Entities::RepoValidator do
       include_context 'when an individual validator fails'
     end
 
-    context 'when the Repo has files', requirements: ['DRAGNET_0041'] do
+    context 'when the Repo has files', requirements: ['SRS_DRAGNET_0041'] do
       let(:files) { 'utils/b2f/password.c' }
       let(:processed_files) { ['utils/b2f/password.c'] }
 

@@ -49,7 +49,7 @@ RSpec.describe Dragnet::Validators::FilesValidator do
   describe '#validate' do
     subject(:method_call) { files_validator.validate }
 
-    context 'when the files key is not present or has no value', requirements: ['DRAGNET_0004'] do
+    context 'when the files key is not present or has no value', requirements: ['SRS_DRAGNET_0004'] do
       let(:files) { nil }
 
       it 'does nothing' do
@@ -58,7 +58,7 @@ RSpec.describe Dragnet::Validators::FilesValidator do
       end
     end
 
-    context "when one of the given files doesn't match a file in the repository", requirements: ['DRAGNET_0005'] do
+    context "when one of the given files doesn't match a file in the repository", requirements: ['SRS_DRAGNET_0005'] do
       let(:file) { 'test/manual/ESR_REQ_5745.yaml' }
 
       before do
@@ -72,7 +72,7 @@ RSpec.describe Dragnet::Validators::FilesValidator do
       end
     end
 
-    context 'when a glob pattern is given', requirements: %w[DRAGNET_0013 DRAGNET_0014] do
+    context 'when a glob pattern is given', requirements: %w[SRS_DRAGNET_0013 SRS_DRAGNET_0014] do
       let(:files) { ['test/manual/security/ESR_REQ_*.yaml'] }
 
       let(:expected_files) do
@@ -102,7 +102,7 @@ RSpec.describe Dragnet::Validators::FilesValidator do
     end
 
     context 'when the listed files or glob patterns have a / at the beginning',
-            requirements: %w[DRAGNET_0072 DRAGNET_0073] do
+            requirements: %w[SRS_DRAGNET_0072 SRS_DRAGNET_0073] do
       let(:files) do
         %w[
           /test/manual/safety/ESR_REQ_*.yaml

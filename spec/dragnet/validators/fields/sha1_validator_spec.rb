@@ -19,14 +19,14 @@ RSpec.describe Dragnet::Validators::Fields::SHA1Validator do
       end
     end
 
-    context "when the data doesn't have a sha1 key", requirements: ['DRAGNET_0006'] do
+    context "when the data doesn't have a sha1 key", requirements: ['SRS_DRAGNET_0006'] do
       let(:value) { nil }
       let(:expected_message) { 'Missing required key: sha1' }
 
       it_behaves_like 'Dragnet::Validators::Fields::FieldValidator#validate when the validation fails'
     end
 
-    context 'when the SHA1 is not a string', requirements: ['DRAGNET_0006'] do
+    context 'when the SHA1 is not a string', requirements: ['SRS_DRAGNET_0006'] do
       let(:value) { 123_456 }
 
       let(:expected_message) do
@@ -36,7 +36,7 @@ RSpec.describe Dragnet::Validators::Fields::SHA1Validator do
       it_behaves_like 'Dragnet::Validators::Fields::FieldValidator#validate when the validation fails'
     end
 
-    context 'when the SHA1 is too short', requirements: ['DRAGNET_0006'] do
+    context 'when the SHA1 is too short', requirements: ['SRS_DRAGNET_0006'] do
       let(:value) { 'af27' }
 
       let(:expected_message) do
@@ -46,7 +46,7 @@ RSpec.describe Dragnet::Validators::Fields::SHA1Validator do
       it_behaves_like 'Dragnet::Validators::Fields::FieldValidator#validate when the validation fails'
     end
 
-    context 'when the SHA1 is too long', requirements: ['DRAGNET_0006'] do
+    context 'when the SHA1 is too long', requirements: ['SRS_DRAGNET_0006'] do
       let(:value) { 'ca3a9455ae12dc3a1939a3152d82250cc9ed001a1f8736b43010a41702b' }
 
       let(:expected_message) do
@@ -56,7 +56,7 @@ RSpec.describe Dragnet::Validators::Fields::SHA1Validator do
       it_behaves_like 'Dragnet::Validators::Fields::FieldValidator#validate when the validation fails'
     end
 
-    context 'when the SHA1 is not a valid hexadecimal string', requirements: ['DRAGNET_0006'] do
+    context 'when the SHA1 is not a valid hexadecimal string', requirements: ['SRS_DRAGNET_0006'] do
       let(:value) { '...jumped over the lazy gray dog' }
 
       let(:expected_message) do

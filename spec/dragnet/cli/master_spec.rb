@@ -59,7 +59,7 @@ end
 RSpec.describe Dragnet::CLI::Master do
   subject(:master) { described_class.new }
 
-  describe '#version', requirements: %w[DRAGNET_0017 DRAGNET_0026] do
+  describe '#version', requirements: %w[SRS_DRAGNET_0017 SRS_DRAGNET_0026] do
     subject(:method_call) { master.version }
 
     include_context "with the default CLI's --version output"
@@ -79,7 +79,7 @@ RSpec.describe Dragnet::CLI::Master do
     end
   end
 
-  describe '#check', requirements: ['DRAGNET_0018'] do
+  describe '#check', requirements: ['SRS_DRAGNET_0018'] do
     subject(:method_call) { master.check(path) }
 
     let(:path) { nil }
@@ -154,13 +154,13 @@ RSpec.describe Dragnet::CLI::Master do
     end
 
     context 'when no configuration file is specified' do
-      it 'loads the default configuration file', requirements: ['DRAGNET_0019'] do
+      it 'loads the default configuration file', requirements: ['SRS_DRAGNET_0019'] do
         expect(File).to receive(:read).with('.dragnet.yaml')
         method_call
       end
     end
 
-    context 'when a configuration file is specified', requirements: ['DRAGNET_0020'] do
+    context 'when a configuration file is specified', requirements: ['SRS_DRAGNET_0020'] do
       before do
         master.options = { configuration: 'my_config.yaml' }
         allow(File).to receive(:read).with('my_config.yaml').and_return(config_yaml)
@@ -172,7 +172,7 @@ RSpec.describe Dragnet::CLI::Master do
       end
     end
 
-    context 'when the specified configuration file cannot be loaded', requirements: ['DRAGNET_0034'] do
+    context 'when the specified configuration file cannot be loaded', requirements: ['SRS_DRAGNET_0034'] do
       before do
         allow(File).to receive(:read).with('.dragnet.yaml').and_raise(
           Errno::ENOENT, 'File not found .dragnet.yaml'
@@ -198,7 +198,7 @@ RSpec.describe Dragnet::CLI::Master do
       end
     end
 
-    context 'when no path is specified', requirements: %w[DRAGNET_0001 DRAGNET_0002] do
+    context 'when no path is specified', requirements: %w[SRS_DRAGNET_0001 SRS_DRAGNET_0002] do
       context 'when none is configured in the configuration file' do
         let(:pwd) { Pathname.pwd }
 
@@ -304,7 +304,7 @@ RSpec.describe Dragnet::CLI::Master do
       end
     end
 
-    context 'when a path is specified', requirements: %w[DRAGNET_0001 DRAGNET_0002] do
+    context 'when a path is specified', requirements: %w[SRS_DRAGNET_0001 SRS_DRAGNET_0002] do
       let(:path) { '/tmp/repository' }
       let(:pathname) { Pathname.new('/tmp/repository') }
 
@@ -363,7 +363,7 @@ RSpec.describe Dragnet::CLI::Master do
       method_call
     end
 
-    context 'when the Explorer class raises an ArgumentError', requirements: ['DRAGNET_0034'] do
+    context 'when the Explorer class raises an ArgumentError', requirements: ['SRS_DRAGNET_0034'] do
       before do
         allow(Dragnet::Explorer).to receive(:new).and_raise(
           ArgumentError, 'Missing required parameter glob_patterns'
@@ -389,7 +389,7 @@ RSpec.describe Dragnet::CLI::Master do
       end
     end
 
-    context 'when the Explorer raises a Dragnet::Errors::NoMTRFilesFoundError', requirements: ['DRAGNET_0033'] do
+    context 'when the Explorer raises a Dragnet::Errors::NoMTRFilesFoundError', requirements: ['SRS_DRAGNET_0033'] do
       before do
         allow(explorer).to receive(:files).and_raise(
           Dragnet::Errors::NoMTRFilesFoundError,

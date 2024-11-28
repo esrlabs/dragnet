@@ -127,7 +127,7 @@ RSpec.describe Dragnet::Verifiers::ReposVerifier do
           .with(files: nil, sha1: '5ac903b80e').and_return(proxy_test_record_without_files)
       end
 
-      describe 'Repositories', requirements: %w[DRAGNET_0050] do
+      describe 'Repositories', requirements: %w[SRS_DRAGNET_0050] do
         it 'creates a Repository object for the Repo with files with the expected path' do
           expect(Dragnet::Repository).to receive(:new)
             .with(path: Pathname.new('/Workspace/project/source/esrlabs/bsw/crypto'))
@@ -155,7 +155,7 @@ RSpec.describe Dragnet::Verifiers::ReposVerifier do
           end
         end
 
-        context 'when the creation of a repository fails', requirements: %w[DRAGNET_0045] do
+        context 'when the creation of a repository fails', requirements: %w[SRS_DRAGNET_0045] do
           let(:failed_verification_result) do
             instance_double(
               Dragnet::VerificationResult
@@ -187,7 +187,7 @@ RSpec.describe Dragnet::Verifiers::ReposVerifier do
         end
       end
 
-      describe 'Proxy TestRecords', requirements: %w[DRAGNET_0050] do
+      describe 'Proxy TestRecords', requirements: %w[SRS_DRAGNET_0050] do
         it 'creates a proxy TestRecord for the first Repo with the expected parameters' do
           expect(Dragnet::TestRecord).to receive(:new).with(files: repo_files, sha1: '6fd07835de')
           method_call
@@ -200,7 +200,7 @@ RSpec.describe Dragnet::Verifiers::ReposVerifier do
       end
 
       describe 'Verification' do
-        it 'verifies the Repo that has files with the FilesVerifier', requirements: %w[DRAGNET_0051] do
+        it 'verifies the Repo that has files with the FilesVerifier', requirements: %w[SRS_DRAGNET_0051] do
           expect(Dragnet::Verifiers::FilesVerifier).to receive(:new)
             .with(test_record: proxy_test_record_with_files, repository: repository_with_files)
 
@@ -208,7 +208,7 @@ RSpec.describe Dragnet::Verifiers::ReposVerifier do
           method_call
         end
 
-        it 'verifies the Repo that has no files with the ChangesVerifier', requirements: %w[DRAGNET_0053] do
+        it 'verifies the Repo that has no files with the ChangesVerifier', requirements: %w[SRS_DRAGNET_0053] do
           expect(Dragnet::Verifiers::ChangesVerifier).to receive(:new)
             .with(test_record: proxy_test_record_without_files, repository: repository_without_files, test_records: [])
 
@@ -232,7 +232,7 @@ RSpec.describe Dragnet::Verifiers::ReposVerifier do
           end
         end
 
-        context 'when the FilesVerifier fails', requirements: %w[DRAGNET_0052 DRAGNET_0059] do
+        context 'when the FilesVerifier fails', requirements: %w[SRS_DRAGNET_0052 SRS_DRAGNET_0059] do
           let(:failed_verification_result) do
             instance_double(
               Dragnet::VerificationResult,
@@ -245,7 +245,7 @@ RSpec.describe Dragnet::Verifiers::ReposVerifier do
           it_behaves_like '#verify when one of the inner verifiers fails'
         end
 
-        context 'when the ChangesVerifier fails', requirements: %w[DRAGNET_0054 DRAGNET_0059] do
+        context 'when the ChangesVerifier fails', requirements: %w[SRS_DRAGNET_0054 SRS_DRAGNET_0059] do
           let(:failed_verification_result) do
             instance_double(
               Dragnet::VerificationResult,

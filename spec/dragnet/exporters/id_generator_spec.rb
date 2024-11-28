@@ -4,7 +4,7 @@ require 'dragnet/exporters/id_generator'
 require 'dragnet/multi_repository'
 require 'dragnet/test_record'
 
-RSpec.describe Dragnet::Exporters::IDGenerator, requirements: %w[DRAGNET_0067] do
+RSpec.describe Dragnet::Exporters::IDGenerator, requirements: %w[SRS_DRAGNET_0067] do
   subject(:id_generator) { described_class.new(repository) }
 
   let(:repository) do

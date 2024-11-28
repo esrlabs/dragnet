@@ -19,14 +19,14 @@ RSpec.describe Dragnet::Validators::Fields::IDValidator do
       end
     end
 
-    context "when the data doesn't have an id key", requirements: ['DRAGNET_0007'] do
+    context "when the data doesn't have an id key", requirements: ['SRS_DRAGNET_0007'] do
       let(:value) { nil }
       let(:expected_message) { 'Missing required key: id' }
 
       it_behaves_like 'Dragnet::Validators::Fields::FieldValidator#validate when the validation fails'
     end
 
-    context 'when the id key has an invalid data type', requirements: ['DRAGNET_0007'] do
+    context 'when the id key has an invalid data type', requirements: ['SRS_DRAGNET_0007'] do
       let(:value) { 6754.54 }
 
       let(:expected_message) do
@@ -36,7 +36,7 @@ RSpec.describe Dragnet::Validators::Fields::IDValidator do
       it_behaves_like 'Dragnet::Validators::Fields::FieldValidator#validate when the validation fails'
     end
 
-    context 'when the id key has multiple IDs in a string', requirements: ['DRAGNET_0007'] do
+    context 'when the id key has multiple IDs in a string', requirements: ['SRS_DRAGNET_0007'] do
       let(:value) { 'ERS_REQ_6845, ESR_REQ_9459' }
 
       let(:expected_message) do
@@ -47,7 +47,7 @@ RSpec.describe Dragnet::Validators::Fields::IDValidator do
       it_behaves_like 'Dragnet::Validators::Fields::FieldValidator#validate when the validation fails'
     end
 
-    context 'when the array of IDs has something that is not a string', requirements: ['DRAGNET_0007'] do
+    context 'when the array of IDs has something that is not a string', requirements: ['SRS_DRAGNET_0007'] do
       let(:value) { ['ESR_REQ_3175', 2 + 3i, 'ESR_REQ_8518'] }
 
       let(:expected_message) do

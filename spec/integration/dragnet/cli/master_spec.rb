@@ -4,7 +4,7 @@ require 'dragnet/cli/master'
 require 'shared/cli_master'
 
 RSpec.describe Dragnet::CLI::Master do
-  describe '--version', requirements: %w[DRAGNET_0017 DRAGNET_0026] do
+  describe '--version', requirements: %w[SRS_DRAGNET_0017 SRS_DRAGNET_0026] do
     subject(:output) { `#{base_command}` }
 
     let(:base_command) { 'bundle exec exe/dragnet --version' }

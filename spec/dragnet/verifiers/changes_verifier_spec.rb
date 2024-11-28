@@ -48,7 +48,7 @@ RSpec.describe Dragnet::Verifiers::ChangesVerifier do
   describe '#verify' do
     subject(:method_call) { changes_verifier.verify }
 
-    context 'when there are no changes in the repository', requirements: ['DRAGNET_0016'] do
+    context 'when there are no changes in the repository', requirements: ['SRS_DRAGNET_0016'] do
       let(:diff) do
         instance_double(
           Git::Diff,
@@ -61,7 +61,7 @@ RSpec.describe Dragnet::Verifiers::ChangesVerifier do
       end
     end
 
-    context 'when there are changes in the repository', requirements: ['DRAGNET_0016'] do
+    context 'when there are changes in the repository', requirements: ['SRS_DRAGNET_0016'] do
       let(:diff) do
         instance_double(
           Git::Diff,
@@ -70,7 +70,7 @@ RSpec.describe Dragnet::Verifiers::ChangesVerifier do
         )
       end
 
-      context 'when the changes are only in MTR files', requirements: ['DRAGNET_0015'] do
+      context 'when the changes are only in MTR files', requirements: ['SRS_DRAGNET_0015'] do
         let(:stats) do
           {
             files: {
@@ -84,7 +84,7 @@ RSpec.describe Dragnet::Verifiers::ChangesVerifier do
         end
       end
 
-      context 'when the change include other files', requirements: ['DRAGNET_0015'] do
+      context 'when the change include other files', requirements: ['SRS_DRAGNET_0015'] do
         let(:stats) do
           {
             files: {

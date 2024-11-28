@@ -82,7 +82,7 @@ RSpec.describe Dragnet::TestRecord do
       end
     end
 
-    describe 'Meta-data', requirements: %w[DRAGNET_0068] do
+    describe 'Meta-data', requirements: %w[SRS_DRAGNET_0068] do
       shared_examples_for 'a meta-data attribute' do
         # Required variables:
         #   :attribute_value: The value attribute being tested

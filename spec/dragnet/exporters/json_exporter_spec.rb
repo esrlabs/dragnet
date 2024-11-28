@@ -2,7 +2,7 @@
 
 require 'dragnet/exporters/json_exporter'
 
-RSpec.describe Dragnet::Exporters::JSONExporter, requirements: %w[DRAGNET_0060] do
+RSpec.describe Dragnet::Exporters::JSONExporter, requirements: %w[SRS_DRAGNET_0060] do
   subject(:json_exporter) do
     described_class.new(test_records: test_records, errors: errors, repository: repository, logger: logger)
   end
@@ -115,12 +115,12 @@ RSpec.describe Dragnet::Exporters::JSONExporter, requirements: %w[DRAGNET_0060] 
       method_call
     end
 
-    it 'creates a single instance of the IDGenerator class', requirements: %w[DRAGNET_0066] do
+    it 'creates a single instance of the IDGenerator class', requirements: %w[SRS_DRAGNET_0066] do
       expect(Dragnet::Exporters::IDGenerator).to receive(:new).with(repository).once
       method_call
     end
 
-    it 'generates IDs for each of the Test Records', requirements: %w[DRAGNET_0066] do
+    it 'generates IDs for each of the Test Records', requirements: %w[SRS_DRAGNET_0066] do
       test_records.each do |test_record|
         expect(id_generator).to receive(:id_for).with(test_record)
       end
@@ -149,12 +149,12 @@ RSpec.describe Dragnet::Exporters::JSONExporter, requirements: %w[DRAGNET_0060] 
           expect(parsed_json).to be_an(Array)
         end
 
-        it 'produces an Array of Hashes', requirements: %w[DRAGNET_0061] do
+        it 'produces an Array of Hashes', requirements: %w[SRS_DRAGNET_0061] do
           expect(parsed_json).to all(be_a(Hash))
         end
 
         it 'produces an array with the same number of elements as Test Records there are',
-           requirements: %w[DRAGNET_0061] do
+           requirements: %w[SRS_DRAGNET_0061] do
           expect(parsed_json.size).to eq(test_records.size)
         end
       end

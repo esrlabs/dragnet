@@ -101,7 +101,7 @@ RSpec.describe Dragnet::Validator do
       end
     end
 
-    it 'Logs the files as they are checked', requirements: %w[DRAGNET_0027] do
+    it 'Logs the files as they are checked', requirements: %w[SRS_DRAGNET_0027] do
       files.each do |file|
         expect(logger).to receive(:info).with("Validating #{file}...")
       end
@@ -126,7 +126,7 @@ RSpec.describe Dragnet::Validator do
       include_examples 'Dragnet::Validator#validate adds the file data to the errors array'
     end
 
-    context 'when one of the files is not a valid YAML file', requirements: ['DRAGNET_0003'] do
+    context 'when one of the files is not a valid YAML file', requirements: ['SRS_DRAGNET_0003'] do
       let(:file) { '/Workspace/source/test/manual/ESR_REQ_9813.yaml' }
 
       let(:malformed_yaml) do
@@ -292,7 +292,7 @@ RSpec.describe Dragnet::Validator do
         expect { method_call }.not_to raise_error
       end
 
-      context "when one of the Repos' path doesn't exist", requirements: %w[DRAGNET_0058] do
+      context "when one of the Repos' path doesn't exist", requirements: %w[SRS_DRAGNET_0058] do
         let(:exception_message) do
           'Cannot find the repository path path/to/the/repo inside /Workspace/source'
         end
@@ -314,7 +314,7 @@ RSpec.describe Dragnet::Validator do
       end
 
       context "when one or more of the files listed in the Repo doesn't exist",
-              requirements: %w[DRAGNET_0047 DRAGNET_0048] do
+              requirements: %w[SRS_DRAGNET_0047 SRS_DRAGNET_0048] do
 
         let(:exception_message) do
           'Could not find any files matching lib/security/crypto/rsa*.h in path/to/the/repo'

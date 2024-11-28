@@ -15,7 +15,7 @@ RSpec.describe Dragnet::Repo do
     context 'without files' do
       let(:params) { { path: path, sha1: sha1 } }
 
-      it 'does not raise any errors', requirements: ['DRAGNET_0049'] do
+      it 'does not raise any errors', requirements: ['SRS_DRAGNET_0049'] do
         expect { repo }.not_to raise_error
       end
     end
@@ -23,7 +23,7 @@ RSpec.describe Dragnet::Repo do
     context 'when files is nil' do
       let(:files) { nil }
 
-      it 'does not rise any errors', requirements: ['DRAGNET_0049'] do
+      it 'does not rise any errors', requirements: ['SRS_DRAGNET_0049'] do
         expect { repo }.not_to raise_error
       end
     end
