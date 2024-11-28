@@ -53,6 +53,6 @@ Exporting
   Here Dragnet exports the results of the above steps to the specified format.
   The exported data varies with the selected format.
 
-.. _DIM: https://docs.int.esrlabs.com/dim/index.html
+.. _DIM: https://esrlabs.github.io/dox/dim/
 .. _Git: https://git-scm.com/
 .. _commit: https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository#_committing_changes

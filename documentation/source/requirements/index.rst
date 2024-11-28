@@ -13,4 +13,4 @@ generated yet. To generate the requirements run the following command:
 
 And then generate the Sphinx documentation again.
 
-.. _DIM: https://docs.int.esrlabs.com/dim/index.html
+.. _DIM: https://esrlabs.github.io/dox/dim/

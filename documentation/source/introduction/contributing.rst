@@ -77,7 +77,7 @@ new version of the gem. To do so:
 
 .. _`Dragnet's Issue Tracker`: https://github.com/esrlabs/dragnet/issues
 .. _`Dragnet's Repository`: https://github.com/esrlabs/dragnet
-.. _DIM: https://docs.int.esrlabs.com/dim/index.html
+.. _DIM: https://esrlabs.github.io/dox/dim/
 .. _`Test documentation`: https://docs.int.esrlabs.com/guidelines/general/testing/test_documentation.html
 .. _`Keep a Changelog`: https://keepachangelog.com/en/1.0.0/
 .. _`ESR Labs's guidelines for writing commit messages`: https://docs.int.esrlabs.com/guidelines/general/scm/commit_message.html
