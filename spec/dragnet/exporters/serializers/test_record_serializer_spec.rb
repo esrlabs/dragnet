@@ -16,6 +16,7 @@ RSpec.describe Dragnet::Exporters::Serializers::TestRecordSerializer do
   let(:review_comments) { nil }
   let(:has_findings) { false }
   let(:findings) { nil }
+  let(:source_file) { Pathname.new('/workspace/path/to/repo/manual/ESR_REQ_7630.yaml') }
   let(:files) { nil }
   let(:repos) { nil }
 
@@ -40,6 +41,7 @@ RSpec.describe Dragnet::Exporters::Serializers::TestRecordSerializer do
       findings?: has_findings,
       findings: findings,
       verification_result: verification_result,
+      source_file: source_file,
       files: files,
       repos: repos
     )
@@ -274,6 +276,11 @@ RSpec.describe Dragnet::Exporters::Serializers::TestRecordSerializer do
       it 'includes the findings' do
         expect(method_call).to include(findings: findings)
       end
+    end
+
+    it "includes the TestRecord's source file (relative to the Repository's root)",
+       requirements: %w[SRS_DRAGNET_0081] do
+      expect(method_call).to include(mtr_file: 'manual/ESR_REQ_7630.yaml')
     end
 
     it "includes the TestRecord's serialized VerificationResult" do

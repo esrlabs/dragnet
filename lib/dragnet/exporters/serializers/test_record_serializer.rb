@@ -37,6 +37,7 @@ module Dragnet
             refs: Array(test_record.id),
             result: test_record.result,
             review_status: render_review_status,
+            mtr_file: relative_to_repo(test_record.source_file).to_s,
             verification_result: serialized_verification_result,
 
             # TODO: Remove the started_at and finished_at attributes after solving
