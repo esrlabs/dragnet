@@ -76,12 +76,12 @@ RSpec.describe Dragnet::Verifiers::TestRecordVerifier do
           .with(status: :passed).and_return(passed_verification_result)
       end
 
-      it 'creates a passed VerificationResult', requirements: %w[DRAGNET_0016] do
+      it 'creates a passed VerificationResult', requirements: %w[SRS_DRAGNET_0016] do
         expect(Dragnet::VerificationResult).to receive(:new).with(status: :passed)
         method_call
       end
 
-      it 'returns the passed VerificationResult', requirements: %w[DRAGNET_0016] do
+      it 'returns the passed VerificationResult', requirements: %w[SRS_DRAGNET_0016] do
         expect(method_call).to eq(passed_verification_result)
       end
     end
@@ -213,7 +213,8 @@ RSpec.describe Dragnet::Verifiers::TestRecordVerifier do
         method_call
       end
 
-      it 'uses the ReposVerifier to verify the changes to the listed repositories', requirements: %w[DRAGNET_0050] do
+      it 'uses the ReposVerifier to verify the changes to the listed repositories',
+         requirements: %w[SRS_DRAGNET_0050] do
         expect(Dragnet::Verifiers::ReposVerifier).to receive(:new)
           .with(test_record: test_record, multi_repository: repository)
 

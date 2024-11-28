@@ -15,10 +15,10 @@ RSpec.describe Dragnet::Explorer do
     )
   end
 
-  describe '#initialize', requirements: %w[DRAGNET_0001 DRAGNET_0002] do
+  describe '#initialize', requirements: %w[SRS_DRAGNET_0001 SRS_DRAGNET_0002] do
     subject(:method_call) { explorer }
 
-    describe 'parameter checks', requirements: ['DRAGNET_0034'] do
+    describe 'parameter checks', requirements: ['SRS_DRAGNET_0034'] do
       context 'when the path is missing' do
         let(:path) { nil }
 
@@ -83,7 +83,7 @@ RSpec.describe Dragnet::Explorer do
   describe '#files' do
     subject(:method_call) { explorer.files }
 
-    context 'when no files are found on the given path', requirements: ['DRAGNET_0033'] do
+    context 'when no files are found on the given path', requirements: ['SRS_DRAGNET_0033'] do
       before do
         allow(path).to receive(:glob).with('tests/manual/*.yaml').and_return([])
       end
@@ -109,7 +109,7 @@ RSpec.describe Dragnet::Explorer do
       end
 
       shared_examples_for '#files when the explorer finds files' do
-        it 'logs the found MTR files', requirements: %w[DRAGNET_0032] do
+        it 'logs the found MTR files', requirements: %w[SRS_DRAGNET_0032] do
           expect(logger).to receive(:info).with('Found MTR file: /Workspace/source/tests/manual/ESR_9473.yaml')
           expect(logger).to receive(:info).with('Found MTR file: /Workspace/source/tests/manual/ESR_1532.yaml')
           method_call
@@ -143,7 +143,7 @@ RSpec.describe Dragnet::Explorer do
 
         it_behaves_like '#files when the explorer finds files'
 
-        it 'logs the MTR found in the second glob pattern', requirements: %w[DRAGNET_0032] do
+        it 'logs the MTR found in the second glob pattern', requirements: %w[SRS_DRAGNET_0032] do
           expect(logger).to receive(:info).with('Found MTR file: /Workspace/source/req/manual/ESR_6348.yml')
           method_call
         end

@@ -2,7 +2,7 @@
 
 require 'dragnet/exporters/html_exporter'
 
-RSpec.describe Dragnet::Exporters::HTMLExporter, requirements: ['DRAGNET_0022'] do
+RSpec.describe Dragnet::Exporters::HTMLExporter, requirements: ['SRS_DRAGNET_0022'] do
   subject(:html_exporter) do
     described_class.new(
       test_records: test_records, errors: errors, repository: repository, logger: logger

@@ -37,7 +37,7 @@ RSpec.shared_context 'with a test repository for Dragnet::Exporters::HTMLExporte
   end
 end
 
-RSpec.describe Dragnet::Exporters::HTMLExporter, requirements: ['DRAGNET_0022'] do
+RSpec.describe Dragnet::Exporters::HTMLExporter, requirements: ['SRS_DRAGNET_0022'] do
   subject(:output) { html_exporter.export }
 
   let(:html_exporter) do
@@ -249,7 +249,7 @@ RSpec.describe Dragnet::Exporters::HTMLExporter, requirements: ['DRAGNET_0022'] 
     end
   end
 
-  describe 'colors from verification results', requirements: ['DRAGNET_0024'] do
+  describe 'colors from verification results', requirements: ['SRS_DRAGNET_0024'] do
     include_context 'with a mocked template for Dragnet::Exporters::HTMLExporter'
 
     let(:test_record) do
@@ -502,7 +502,7 @@ RSpec.describe Dragnet::Exporters::HTMLExporter, requirements: ['DRAGNET_0022'] 
       expect(output).not_to include(temp_dir.to_s)
     end
 
-    describe 'list of MTR files', requirements: ['DRAGNET_0023'] do
+    describe 'list of MTR files', requirements: ['SRS_DRAGNET_0023'] do
       it 'lists the MTR files that were successfully loaded' do
         expect(output).to include('source/tests/manual/safe_e2e.yaml')
           .and include('source/tests/manual/io_vectors.yaml')
@@ -515,7 +515,7 @@ RSpec.describe Dragnet::Exporters::HTMLExporter, requirements: ['DRAGNET_0022'] 
       end
     end
 
-    it 'lists the reasons for the failure/skipping of the test records', requirements: ['DRAGNET_0025'] do
+    it 'lists the reasons for the failure/skipping of the test records', requirements: ['SRS_DRAGNET_0025'] do
       expect(output).to include('changes detected in the repository f13dbbc..6e94407')
         .and include("result key has the value 'failed'")
     end

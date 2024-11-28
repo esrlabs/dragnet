@@ -27,14 +27,14 @@ RSpec.describe Dragnet::Validators::Fields::ResultValidator do
       end
     end
 
-    context "when the data doesn't have a result key", requirements: ['DRAGNET_0008'] do
+    context "when the data doesn't have a result key", requirements: ['SRS_DRAGNET_0008'] do
       let(:value) { nil }
       let(:expected_message) { 'Missing required key: result' }
 
       it_behaves_like 'Dragnet::Validators::Fields::FieldValidator#validate when the validation fails'
     end
 
-    context 'when the result key contains something that is not a string', requirements: ['DRAGNET_0008'] do
+    context 'when the result key contains something that is not a string', requirements: ['SRS_DRAGNET_0008'] do
       let(:value) { /missed/ }
 
       let(:expected_message) do
@@ -44,7 +44,7 @@ RSpec.describe Dragnet::Validators::Fields::ResultValidator do
       it_behaves_like 'Dragnet::Validators::Fields::FieldValidator#validate when the validation fails'
     end
 
-    context 'when the value of the result field is not valid', requirements: ['DRAGNET_0008'] do
+    context 'when the value of the result field is not valid', requirements: ['SRS_DRAGNET_0008'] do
       let(:value) { 'missed' }
 
       let(:expected_message) do

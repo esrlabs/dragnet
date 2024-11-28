@@ -40,7 +40,7 @@ RSpec.describe Dragnet::Verifiers::ResultVerifier do
   describe '#verify' do
     subject(:method_call) { result_verifier.verify }
 
-    context 'when the result is "passed"', requirements: ['DRAGNET_0016'] do
+    context 'when the result is "passed"', requirements: ['SRS_DRAGNET_0016'] do
       let(:result) { 'passed' }
       let(:passed) { true }
 
@@ -49,7 +49,7 @@ RSpec.describe Dragnet::Verifiers::ResultVerifier do
       end
     end
 
-    context 'when the result is "failed"', requirements: ['DRAGNET_0011'] do
+    context 'when the result is "failed"', requirements: ['SRS_DRAGNET_0011'] do
       let(:result) { 'failed' }
 
       let(:expected_parameters) do

@@ -59,7 +59,7 @@ RSpec.describe Dragnet::Validators::DataValidator do
   describe '#validate' do
     subject(:method_call) { data_validator.validate }
 
-    context 'when the data is not a hash', requirements: %w[DRAGNET_0006 DRAGNET_0007 DRAGNET_0008] do
+    context 'when the data is not a hash', requirements: %w[SRS_DRAGNET_0006 SRS_DRAGNET_0007 SRS_DRAGNET_0008] do
       let(:data) { 'The quick brown fox...' }
 
       let(:expected_message) do

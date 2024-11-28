@@ -65,14 +65,14 @@ RSpec.describe Dragnet::Verifier do
     end
 
     RSpec.shared_examples 'prints nothing to STDOUT' do
-      it 'prints nothing to STDOUT', requirements: ['DRAGNET_0031'] do
+      it 'prints nothing to STDOUT', requirements: ['SRS_DRAGNET_0031'] do
         expect { method_call }.not_to output.to_stdout
       end
     end
 
     include_examples 'prints nothing to STDOUT'
 
-    it 'passes all the Test Records through the TestRecordVerifier', requirements: ['DRAGNET_0030'] do
+    it 'passes all the Test Records through the TestRecordVerifier', requirements: ['SRS_DRAGNET_0030'] do
       test_records.each do |test_record|
         expect(Dragnet::Verifiers::TestRecordVerifier).to receive(:new)
           .with(test_record: test_record, repository: repository, test_records: test_records)
@@ -85,7 +85,7 @@ RSpec.describe Dragnet::Verifier do
       # Required variables:
       # :passed_test_records_count: The number of test records that should have passed the verification.
 
-      it 'logs the passing of all MTRs', requirements: %w[DRAGNET_0028] do
+      it 'logs the passing of all MTRs', requirements: %w[SRS_DRAGNET_0028] do
         expect(passed_verification_result).to receive(:log_message).exactly(passed_test_records_count).times
         expect(logger).to receive(:info).with('PASSED').exactly(passed_test_records_count).times
 
@@ -98,12 +98,12 @@ RSpec.describe Dragnet::Verifier do
       # :verification_result: The VerificationResult double that should receive the messages
       # :number_of_messages: The number of messages that should be received by the VerificationResult double
 
-      it 'records the started_at timestamp', requirements: %w[DRAGNET_0075] do
+      it 'records the started_at timestamp', requirements: %w[SRS_DRAGNET_0075] do
         expect(verification_result).to receive(:started_at=).with(instance_of(Time)).exactly(number_of_messages).times
         method_call
       end
 
-      it 'records the finished_at timestamp', requirements: %w[DRAGNET_0076] do
+      it 'records the finished_at timestamp', requirements: %w[SRS_DRAGNET_0076] do
         expect(verification_result).to receive(:finished_at=).with(instance_of(Time)).exactly(number_of_messages).times
         method_call
       end
@@ -172,7 +172,7 @@ RSpec.describe Dragnet::Verifier do
 
       include_examples 'prints nothing to STDOUT'
 
-      it 'logs the failure of the test record(s)', requirements: %w[DRAGNET_0028] do
+      it 'logs the failure of the test record(s)', requirements: %w[SRS_DRAGNET_0028] do
         expect(failed_verification_result).to receive(:log_message).exactly(failed_test_records_count).times
         expect(logger).to receive(:info).with('FAILED').exactly(failed_test_records_count).times
 
@@ -241,7 +241,7 @@ RSpec.describe Dragnet::Verifier do
 
       include_examples 'prints nothing to STDOUT'
 
-      it 'logs the skipping of the test record(s)', requirements: %w[DRAGNET_0028] do
+      it 'logs the skipping of the test record(s)', requirements: %w[SRS_DRAGNET_0028] do
         expect(skipped_verification_result).to receive(:log_message).exactly(skipped_test_records_count).times
         expect(logger).to receive(:info).with('SKIPPED').exactly(skipped_test_records_count).times
 

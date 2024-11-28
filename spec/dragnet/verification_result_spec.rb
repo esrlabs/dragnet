@@ -106,7 +106,7 @@ RSpec.describe Dragnet::VerificationResult do
   end
 
   shared_examples 'runtime update after timestamp change' do
-    describe 'runtime update', requirements: %w[DRAGNET_0077] do
+    describe 'runtime update', requirements: %w[SRS_DRAGNET_0077] do
       before do
         verification_result.started_at = Time.new(2028, 2, 6, 22, 40, 24)
         verification_result.finished_at = Time.new(2032, 9, 17, 6, 3, 18)
@@ -142,7 +142,7 @@ RSpec.describe Dragnet::VerificationResult do
     end
   end
 
-  describe '#started_at=', requirements: %w[DRAGNET_0075] do
+  describe '#started_at=', requirements: %w[SRS_DRAGNET_0075] do
     subject(:method_call) { verification_result.started_at = time }
 
     let(:time) { Time.new(2024, 1, 31, 11, 20, 12) }
@@ -179,7 +179,7 @@ RSpec.describe Dragnet::VerificationResult do
     end
   end
 
-  describe '#finished_at=', requirements: %w[DRAGNET_0076] do
+  describe '#finished_at=', requirements: %w[SRS_DRAGNET_0076] do
     subject(:method_call) { verification_result.finished_at = time }
 
     let(:time) { Time.new(2031, 1, 24, 12, 20, 11) }
@@ -227,7 +227,7 @@ RSpec.describe Dragnet::VerificationResult do
     end
   end
 
-  describe '#runtime!', requirements: %w[DRAGNET_0077] do
+  describe '#runtime!', requirements: %w[SRS_DRAGNET_0077] do
     subject(:method_call) { verification_result.runtime! }
 
     shared_examples_for '#runtime! when started_at or finished_at are nil' do
@@ -260,7 +260,7 @@ RSpec.describe Dragnet::VerificationResult do
     end
   end
 
-  describe '#runtime', requirements: %w[DRAGNET_0077] do
+  describe '#runtime', requirements: %w[SRS_DRAGNET_0077] do
     subject(:method_call) { verification_result.runtime }
 
     context 'when both started_at and finished_at are nil' do
@@ -307,7 +307,7 @@ RSpec.describe Dragnet::VerificationResult do
         )
       end
 
-      it 'returns the expected log message', requirements: %w[DRAGNET_0029] do
+      it 'returns the expected log message', requirements: %w[SRS_DRAGNET_0029] do
         expect(method_call).to eq(
           "\e[0;93;49m⚠ SKIPPED\e[0m Changes detected in listed file(s): df0a857bc9..b00826b104 -- src/crypto/rsa.rs"
         )
@@ -323,7 +323,7 @@ RSpec.describe Dragnet::VerificationResult do
           )
         end
 
-        it 'returns the expected log message', requirements: %w[DRAGNET_0029] do
+        it 'returns the expected log message', requirements: %w[SRS_DRAGNET_0029] do
           expect(method_call).to eq(
             "\e[0;91;49m✘ FAILED \e[0m The path 'esrlabs/bsw/crypto' does not contain a valid git repository."
           )

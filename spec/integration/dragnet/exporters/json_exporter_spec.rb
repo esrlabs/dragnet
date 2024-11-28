@@ -41,7 +41,7 @@ RSpec.describe Dragnet::Exporters::JSONExporter do
         expect(method_call).to be_a(String)
       end
 
-      it 'produces parseable JSON', requirements: %w[DRAGNET_0060] do
+      it 'produces parseable JSON', requirements: %w[SRS_DRAGNET_0060] do
         expect { re_parsed_json }.not_to raise_error
       end
     end
@@ -57,7 +57,7 @@ RSpec.describe Dragnet::Exporters::JSONExporter do
         end
       end
 
-      context 'when errors are present', requirements: %w[DRAGNET_0063] do
+      context 'when errors are present', requirements: %w[SRS_DRAGNET_0063] do
         include_context 'with errors'
 
         it_behaves_like '#export when no TestRecords are given'
@@ -224,11 +224,11 @@ RSpec.describe Dragnet::Exporters::JSONExporter do
           re_parsed_json.map { |object| object['verification_result'] }
         end
 
-        it 'produces an array with an element for each Test Record object', requirements: %w[DRAGNET_0061] do
+        it 'produces an array with an element for each Test Record object', requirements: %w[SRS_DRAGNET_0061] do
           expect(re_parsed_json.size).to eq(test_records.size)
         end
 
-        it 'produces an array of Hashes', requirements: %w[DRAGNET_0061] do
+        it 'produces an array of Hashes', requirements: %w[SRS_DRAGNET_0061] do
           expect(re_parsed_json).to all(be_a(Hash))
         end
 
@@ -236,31 +236,31 @@ RSpec.describe Dragnet::Exporters::JSONExporter do
           expect(method_call).to eq(expected_json)
         end
 
-        it 'includes all the MTRs', requirements: %w[DRAGNET_0061] do
+        it 'includes all the MTRs', requirements: %w[SRS_DRAGNET_0061] do
           ids = re_parsed_json.flat_map { |object| object['id'] }
           expect(ids).to eq(%w[2de4fadc0e37faff 02c3a37bb344f280 77ac686a8f4b46dd])
         end
 
-        it 'includes the Verification Result for each MTR', requirements: %w[DRAGNET_0062] do
+        it 'includes the Verification Result for each MTR', requirements: %w[SRS_DRAGNET_0062] do
           expect(verification_results).to all(be_a(Hash))
         end
 
-        it 'includes the start_at attribute in each Verification Result', requirements: %w[DRAGNET_0078] do
+        it 'includes the start_at attribute in each Verification Result', requirements: %w[SRS_DRAGNET_0078] do
           expect(verification_results).to all(have_key('started_at'))
         end
 
-        it 'includes the finished_at attribute in each Verification Result', requirements: %w[DRAGNET_0078] do
+        it 'includes the finished_at attribute in each Verification Result', requirements: %w[SRS_DRAGNET_0078] do
           expect(verification_results).to all(have_key('finished_at'))
         end
 
-        it 'includes the runtime attribute in each Verification Result', requirements: %w[DRAGNET_0078] do
+        it 'includes the runtime attribute in each Verification Result', requirements: %w[SRS_DRAGNET_0078] do
           expect(verification_results).to all(have_key('runtime'))
         end
       end
 
       it_behaves_like '#export when test records are given'
 
-      context 'when errors are present', requirements: %w[DRAGNET_0063] do
+      context 'when errors are present', requirements: %w[SRS_DRAGNET_0063] do
         include_context 'with errors'
 
         it_behaves_like '#export when test records are given'
