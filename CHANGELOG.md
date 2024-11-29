@@ -8,6 +8,8 @@ Please mark backwards incompatible changes with an exclamation mark at the start
 
 ## [Unreleased]
 
+## [5.3.0] - 2024-12-03
+
 ### Added
 - The JSON export now includes the path to the MTR files.
 
