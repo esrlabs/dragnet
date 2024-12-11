@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'forwardable'
+require 'git/url'
 
 require_relative 'base_repository'
 
@@ -36,7 +37,7 @@ module Dragnet
     #
     # @return [String] The URI path of the repository
     def remote_uri_path
-      URI.parse(git.remotes.first.url).path
+      Git::URL.parse(git.remotes.first.url).path
     end
 
     # @return [FalseClass] It always returns false
