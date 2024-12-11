@@ -84,10 +84,12 @@ RSpec.describe Dragnet::Repository do
   describe '#remote_uri_path' do
     subject(:method_call) { repository.remote_uri_path }
 
+    let(:remote_url) { 'ssh://focal.fossa@gerrit.local:29418/projects/central/bsw' }
+
     let(:remote) do
       instance_double(
         Git::Remote,
-        url: 'ssh://focal.fossa@gerrit.int.esrlabs.com:29418/projects/central/bsw'
+        url: remote_url
       )
     end
 
@@ -109,8 +111,50 @@ RSpec.describe Dragnet::Repository do
       method_call
     end
 
-    it "returns only the path of the remote's URL" do
-      expect(method_call).to eq('/projects/central/bsw')
+    context 'when the URL is a standard SSH url' do
+      it "returns only the path of the remote's URL" do
+        expect(method_call).to eq('/projects/central/bsw')
+      end
+    end
+
+    context 'when the URL is a Git URL' do
+      let(:remote_url) { 'git://git@git.local/esrlabs/dox.git' }
+
+      it "returns only the path of the remote's URL" do
+        expect(method_call).to eq('/esrlabs/dox.git')
+      end
+    end
+
+    context 'when the URL is a GitHub URL' do
+      let(:remote_url) { 'git@github.com:esrlabs/dox.git' }
+
+      it "returns only the path of the remote's URL" do
+        expect(method_call).to eq('/esrlabs/dox.git')
+      end
+    end
+
+    context 'when the URL is an HTTPS URL' do
+      let(:remote_url) { 'https://github.com/esrlabs/dox.git' }
+
+      it "returns only the path of the remote's URL" do
+        expect(method_call).to eq('/esrlabs/dox.git')
+      end
+    end
+
+    context 'when the URL is a file URL' do
+      let(:remote_url) { '~/Projects/esrlabs/dox' }
+
+      it "returns only the path of the remote's URL" do
+        expect(method_call).to eq('~/Projects/esrlabs/dox')
+      end
+    end
+
+    context 'when the URL is a JOSH URL' do
+      let(:remote_url) { 'https://focal.fossa@josh.local/bsw.git:/libs.git' }
+
+      it "returns only the path of the remote's URL" do
+        expect(method_call).to eq('/bsw.git:/libs.git')
+      end
     end
   end
 
