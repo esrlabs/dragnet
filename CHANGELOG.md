@@ -8,6 +8,8 @@ Please mark backwards incompatible changes with an exclamation mark at the start
 
 ## [Unreleased]
 
+## [5.3.1] - 2024-12-13
+
 ### Fixed
 - Dragnet no longer crashes when generating an HTML report for a repository
   hosted on Github.
