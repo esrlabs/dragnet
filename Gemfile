@@ -19,4 +19,5 @@ end
 
 group :requirements do
   gem 'dim-toolkit', '2.1.1' # Fixed to a minor because the Gem doesn't follow semantic versioning.
+  gem 'dim_to_rst', '~> 2'
 end
