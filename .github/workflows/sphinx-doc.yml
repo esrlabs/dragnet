@@ -39,6 +39,9 @@ jobs:
     - name: Generate YARD documentation
       run: |
         bundler exec yard doc . --exclude vendor/ -o documentation/build/html/yard
+    - name: Export Requirements
+      run: |
+        bundler exec dim_to_rst req/config.yml documentation/source/requirements
     - name: Install pandoc
       run: |
         sudo apt-get update
