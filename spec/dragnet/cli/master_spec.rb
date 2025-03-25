@@ -68,14 +68,34 @@ RSpec.describe Dragnet::CLI::Master do
       expect { method_call }.to output(expected_output).to_stdout
     end
 
-    context 'when the quit options is given' do
+    shared_examples_for '#version when the quiet option is given' do
       before do
-        master.options = { quiet: true }
+        master.options = master.options.merge(quiet: true)
       end
 
       it "doesn't print anything to the output" do
         expect { method_call }.not_to output.to_stdout
       end
+    end
+
+    context 'when the --number-only option is given' do
+      before do
+        master.options = master.options.merge('number-only': true)
+      end
+
+      include_context "with the number-only CLI's --version output"
+
+      it 'prints only the version number' do
+        expect { method_call }.to output(expected_output).to_stdout
+      end
+
+      context 'when the quiet option is given' do
+        it_behaves_like '#version when the quiet option is given'
+      end
+    end
+
+    context 'when the quiet option is given' do
+      it_behaves_like '#version when the quiet option is given'
     end
   end
 
