@@ -8,6 +8,10 @@ Please mark backwards incompatible changes with an exclamation mark at the start
 
 ## [Unreleased]
 
+### Added
+- A `--number-only` / `-n` switch to the `--version` CLI command that only
+  prints the version number.
+
 ## [5.3.1] - 2024-12-13
 
 ### Fixed

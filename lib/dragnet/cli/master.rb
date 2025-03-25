@@ -30,9 +30,16 @@ module Dragnet
       map %w[--version -v] => :version
 
       desc '--version', 'Prints the current version of the Gem'
+      method_option :'number-only',
+                    aliases: 'n', type: :boolean,
+                    desc: 'If given, only the version number will be printed'
       def version
-        say "Dragnet #{Dragnet::VERSION}"
-        say "Copyright (c) #{Time.now.year} ESR Labs GmbH esrlabs.com"
+        if options[:'number-only']
+          say Dragnet::VERSION
+        else
+          say "Dragnet #{Dragnet::VERSION}"
+          say "Copyright (c) #{Time.now.year} ESR Labs GmbH esrlabs.com"
+        end
       end
 
       desc 'check [PATH]', 'Executes the verification procedure. '\

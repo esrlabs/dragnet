@@ -8,3 +8,11 @@ RSpec.shared_context "with the default CLI's --version output" do
     TEXT
   end
 end
+
+RSpec.shared_context "with the number-only CLI's --version output" do
+  let(:expected_output) do
+    <<~TEXT
+      #{Dragnet::VERSION}
+    TEXT
+  end
+end
