@@ -217,6 +217,12 @@ RSpec.describe Dragnet::Verifiers::ReposVerifier do
         end
       end
 
+      context 'when none of the inner verifiers fail' do
+        it 'returns nil' do
+          expect(method_call).to be_nil
+        end
+      end
+
       describe 'Inner verifier failures' do
         shared_examples_for '#verify when one of the inner verifiers fails' do
           before do
