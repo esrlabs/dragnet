@@ -34,6 +34,8 @@ module Dragnet
 
           return verification_result if verification_result
         end
+
+        nil
       rescue Dragnet::Errors::NotARepositoryError => e
         Dragnet::VerificationResult.new(status: :failed, reason: e.message)
       end
