@@ -8,6 +8,8 @@ Please mark backwards incompatible changes with an exclamation mark at the start
 
 ## [Unreleased]
 
+## [5.4.1] - 2025-04-23
+
 ### Fixed
 - A bug that caused Dragnet to crash during a multi-repo mode verification in
   which all the repositories listed in the MTR passed the verification.
