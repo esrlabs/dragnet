@@ -44,7 +44,7 @@ module Dragnet
       #   the details of the changes found in the repository, or +nil+ if no
       #   changes were found.
       def find_changes(diff)
-        diff.stats[:files].each do |file, _changes|
+        diff.stats[:files].each_key do |file|
           next if mtr_files.include?(file) # Changes to MTR files are ignored.
 
           return Dragnet::VerificationResult.new(
