@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../verification_result'
+require_relative 'mixins/git_error_handling'
 require_relative 'repository_verifier'
 
 module Dragnet
@@ -8,6 +9,8 @@ module Dragnet
     # Checks if any of the files listed in the MTR have changed since the MTR
     # was created.
     class FilesVerifier < Dragnet::Verifiers::RepositoryVerifier
+      include ::Dragnet::Verifiers::Mixins::GitErrorHandling
+
       # Executes the verification process.
       # Checks the changes in the repository. If a change in one of the files
       # is detected a +:result+ key is added to the MTR, including the detected
@@ -26,6 +29,8 @@ module Dragnet
         end
 
         result_from(changes) if changes.any?
+      rescue Git::FailedError => e
+        result_from_git_error(e)
       end
 
       private

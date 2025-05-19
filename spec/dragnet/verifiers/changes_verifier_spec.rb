@@ -48,6 +48,17 @@ RSpec.describe Dragnet::Verifiers::ChangesVerifier do
   describe '#verify' do
     subject(:method_call) { changes_verifier.verify }
 
+    let(:verification_result) do
+      instance_double(
+        Dragnet::VerificationResult
+      )
+    end
+
+    before do
+      allow(Dragnet::VerificationResult).to receive(:new)
+        .and_return(verification_result)
+    end
+
     context 'when there are no changes in the repository', requirements: ['SRS_DRAGNET_0016'] do
       let(:diff) do
         instance_double(
@@ -101,17 +112,6 @@ RSpec.describe Dragnet::Verifiers::ChangesVerifier do
           }
         end
 
-        let(:verification_result) do
-          instance_double(
-            Dragnet::VerificationResult
-          )
-        end
-
-        before do
-          allow(Dragnet::VerificationResult).to receive(:new)
-            .and_return(verification_result)
-        end
-
         it 'creates a VerificationResult object with the expected parameters' do
           expect(Dragnet::VerificationResult).to receive(:new).with(expected_parameters)
           method_call
@@ -120,6 +120,42 @@ RSpec.describe Dragnet::Verifiers::ChangesVerifier do
         it 'returns the failed VerificationResult' do
           expect(method_call).to eq(verification_result)
         end
+      end
+    end
+
+    context 'when the difference between the two revisions cannot be determined', requirements: %w[SRS_DRAGNET_0082] do
+      let(:diff) { instance_double(Git::Diff) }
+
+      let(:result) do
+        instance_double(
+          Git::CommandLineResult,
+          git_cmd: "git '--git-dir=/Workspace/project/.git' '-c' 'diff' '--numstat' " \
+                   "'ed981b34eed' 'HEAD' 2>&1",
+          status: instance_double(Process::Status),
+          stdout: 'fatal: bad object ed981b34eed',
+          stderr: ''
+        )
+      end
+
+      let(:expected_parameters) do
+        {
+          status: :failed,
+          reason: 'Unable to diff the revisions: ed981b34ee..83674b8a81: ' \
+                  'fatal: bad object ed981b34eed'
+        }
+      end
+
+      before do
+        allow(diff).to receive(:size).and_raise(Git::FailedError, result)
+      end
+
+      it 'creates a VerificationResult object with the expected parameters' do
+        expect(Dragnet::VerificationResult).to receive(:new).with(expected_parameters)
+        method_call
+      end
+
+      it 'returns the failed VerificationResult' do
+        expect(method_call).to eq(verification_result)
       end
     end
   end

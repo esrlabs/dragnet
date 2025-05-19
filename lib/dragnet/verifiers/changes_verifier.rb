@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 require_relative '../verification_result'
+require_relative 'mixins/git_error_handling'
 require_relative 'repository_verifier'
 
 module Dragnet
   module Verifiers
     # Checks for changes in the repository since the creation of the MTR Record
     class ChangesVerifier < Dragnet::Verifiers::RepositoryVerifier
+      include ::Dragnet::Verifiers::Mixins::GitErrorHandling
+
       attr_reader :test_records
 
       # @param [Dragnet::TestRecord] test_record The +TestRecord+ object to
@@ -33,6 +36,8 @@ module Dragnet
         return unless diff.size.positive?
 
         find_changes(diff)
+      rescue Git::FailedError => e
+        result_from_git_error(e)
       end
 
       private
