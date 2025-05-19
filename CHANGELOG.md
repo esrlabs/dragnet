@@ -8,6 +8,9 @@ Please mark backwards incompatible changes with an exclamation mark at the start
 
 ## [Unreleased]
 
+### Fixed
+- Dragnet no longer crashes when an invalid / non-existing SHA1 is used in a MTR.
+
 ## [5.4.1] - 2025-04-23
 
 ### Fixed

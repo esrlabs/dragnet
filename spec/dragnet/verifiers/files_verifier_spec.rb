@@ -111,5 +111,46 @@ RSpec.describe Dragnet::Verifiers::FilesVerifier do
         expect(method_call).to eq(verification_result)
       end
     end
+
+    context 'when git is unable to diff the revisions', requirements: %w[SRS_DRAGNET_0082] do
+      let(:result) do
+        instance_double(
+          Git::CommandLineResult,
+          git_cmd: "git '--git-dir=/Workspace/project/.git' '-c' 'diff' '--numstat' " \
+                   "'a981468aedddc0b6b19a00949591561985f8b956' 'HEAD' '--' 'src/master/module.cpp'  2>&1",
+          status: instance_double(Process::Status),
+          stdout: 'fatal: bad object a981468aedddc0b6b19a00949591561985f8b956',
+          stderr: ''
+        )
+      end
+
+      let(:verification_result) do
+        instance_double(
+          Dragnet::VerificationResult
+        )
+      end
+
+      let(:expected_parameters) do
+        {
+          status: :failed,
+          reason: 'Unable to diff the revisions: a981468aed..83674b8a81: ' \
+                  'fatal: bad object a981468aedddc0b6b19a00949591561985f8b956'
+        }
+      end
+
+      before do
+        allow(diff).to receive(:size).and_raise(Git::FailedError, result)
+        allow(Dragnet::VerificationResult).to receive(:new).and_return(verification_result)
+      end
+
+      it 'creates a VerificationResult object with the expected parameters' do
+        expect(Dragnet::VerificationResult).to receive(:new).with(expected_parameters)
+        method_call
+      end
+
+      it 'returns the expected VerificationResult' do
+        expect(method_call).to eq(verification_result)
+      end
+    end
   end
 end
