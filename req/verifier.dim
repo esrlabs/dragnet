@@ -164,3 +164,11 @@ SRS_DRAGNET_0077:
   test_setups:     off_target
   status:          valid
   tags:            covered, tested
+
+SRS_DRAGNET_0082:
+  text:            |
+                   If Git is unable to determine the difference between two
+                   revisions because of an error the MTR shall be considered
+                   invalid and the verification process shall continue.
+  test_setups:     off_target
+  status:          valid
