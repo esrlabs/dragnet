@@ -8,6 +8,9 @@ Please mark backwards incompatible changes with an exclamation mark at the start
 
 ## [Unreleased]
 
+### Changed
+- ! Set the minimum Ruby version requirement to `3.1.0`
+
 ## [5.4.2] - 2025-05-22
 
 ### Fixed

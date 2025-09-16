@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
                        'performed.'
   spec.homepage      = 'https://github.com/esrlabs/dragnet'
   spec.license       = 'MIT'
-  spec.required_ruby_version = Gem::Requirement.new('>= 2.7.0')
+  spec.required_ruby_version = Gem::Requirement.new('>= 3.1.0')
 
   spec.metadata['allowed_push_host'] = 'https://rubygems.org'
 
