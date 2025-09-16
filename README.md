@@ -43,7 +43,7 @@ any platform or use one of the official Docker images.
 
 ## Requirements
 
-* Ruby >= 2.7.0 (MRI)
+* Ruby >= 3.1.0 (MRI)
 * Bundler >= 2.4.0
 * Git >= 2.0.0
 
