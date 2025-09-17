@@ -9,6 +9,7 @@ Please mark backwards incompatible changes with an exclamation mark at the start
 ## [Unreleased]
 
 ### Changed
+- ! Updated the `git` gem dependency from `~> 1.8` to `~> 3`
 - ! Set the minimum Ruby version requirement to `3.1.0`
 
 ## [5.4.2] - 2025-05-22
