@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'activesupport', '~> 7'
   spec.add_runtime_dependency 'colorize', '~> 0.8'
-  spec.add_runtime_dependency 'git', '~> 1.8'
+  spec.add_runtime_dependency 'git', '~> 3'
   spec.add_runtime_dependency 'thor', '~> 1.1'
 
   # Specify which files should be added to the gem when it is released.
