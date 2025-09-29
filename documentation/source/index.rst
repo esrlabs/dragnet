@@ -8,8 +8,8 @@ Welcome to Dragnet documentation!
 
 Dragnet provides a simple way to monitor MTRs validity over a repository.
 
-It's objective is to provide information to the user about changes in the repository that affect MTRs' validity.
-Dragnet checks the MTRs validity over repository versioning and tells the user wether or not the MTRs are still valid
+Its objective is to provide information to the user about changes in the repository that affect MTRs' validity.
+Dragnet checks the MTRs validity over repository versioning and tells the user whether or not the MTRs are still valid
 given the changes in the repository since the annotated revision.
 
 .. toctree::
