@@ -136,6 +136,7 @@ SRS_DRAGNET_0074:
   text:            |
                    The result of the verification shall include information on
                    when the verification was executed and how much time it took.
+  tags:            covered, tested
   test_setups:     none
   status:          valid
   refs:            SRS_DRAGNET_0075, SRS_DRAGNET_0076, SRS_DRAGNET_0077
