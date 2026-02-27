@@ -161,6 +161,7 @@ SRS_DRAGNET_0080:
                    The 'description' text shall be sanitized **BEFORE**
                    rendering it as Markdown to prevent XSS in the generated HTML
                    report.
+  test_setups:     off_target
   tags:            covered, tested
 
 SRS_DRAGNET_0081:
