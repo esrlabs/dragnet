@@ -506,12 +506,14 @@
             </div>
         </div>
         <script type="text/javascript">
-          elements = document.getElementsByClassName('md-description')
+            document.addEventListener("DOMContentLoaded", function () {
+                const elements = document.getElementsByClassName('md-description')
 
-          for(let element of elements) {
-              const source = element.innerText
-              element.innerHTML = marked.parse(source)
-          }
+                for (let element of elements) {
+                    const source = element.innerText
+                    element.innerHTML = marked.parse(source)
+                }
+            })
         </script>
     </body>
 </html>
