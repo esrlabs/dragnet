@@ -517,23 +517,21 @@ RSpec.describe Dragnet::Exporters::HTMLExporter, requirements: ['SRS_DRAGNET_002
     end
 
     let(:marked_invocation_fragment) do
-      <<~JAVASCRIPT.indent(14)
+      <<~JAVASCRIPT.indent(20)
         const source = element.innerText
         element.innerHTML = marked.parse(source)
       JAVASCRIPT
     end
 
     let(:markdown_transform_script) do
-      <<-HTML
-        <script type="text/javascript">
-          elements = document.getElementsByClassName('md-description')
+      <<~JAVASCRIPT.indent(16)
+        const elements = document.getElementsByClassName('md-description')
 
-          for(let element of elements) {
-              const source = element.innerText
-              element.innerHTML = marked.parse(source)
-          }
-        </script>
-      HTML
+        for (let element of elements) {
+            const source = element.innerText
+            element.innerHTML = marked.parse(source)
+        }
+      JAVASCRIPT
     end
 
     let(:expected_dd_tag) do
