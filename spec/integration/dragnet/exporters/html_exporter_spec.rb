@@ -206,7 +206,7 @@ RSpec.describe Dragnet::Exporters::HTMLExporter, requirements: ['SRS_DRAGNET_002
 
       let(:expected_output) do
         <<~HTML
-          <span class=\"badge bg-gray\">(unknown)</span>
+          <span class=\"badge bg-muted text-muted-fg\">(unknown)</span>
         HTML
       end
 
@@ -224,7 +224,7 @@ RSpec.describe Dragnet::Exporters::HTMLExporter, requirements: ['SRS_DRAGNET_002
 
       let(:expected_output) do
         <<~HTML
-          <span class=\"badge bg-green\">Reviewed</span>
+          <span class=\"badge bg-green text-green-fg\">Reviewed</span>
         HTML
       end
 
@@ -242,7 +242,7 @@ RSpec.describe Dragnet::Exporters::HTMLExporter, requirements: ['SRS_DRAGNET_002
 
       let(:expected_output) do
         <<~HTML
-          <span class=\"badge bg-red\">Inreview</span>
+          <span class=\"badge bg-red text-red-fg\">Inreview</span>
         HTML
       end
 
@@ -273,7 +273,7 @@ RSpec.describe Dragnet::Exporters::HTMLExporter, requirements: ['SRS_DRAGNET_002
 
         let(:expected_output) do
           <<~HTML
-            <span class=\"badge bg-green\">Passed</span>
+            <span class=\"badge bg-green text-green-fg\">Passed</span>
           HTML
         end
 
@@ -285,7 +285,7 @@ RSpec.describe Dragnet::Exporters::HTMLExporter, requirements: ['SRS_DRAGNET_002
 
         let(:expected_output) do
           <<~HTML
-            <span class=\"badge bg-yellow\">Skipped</span>
+            <span class=\"badge bg-yellow text-yellow-fg\">Skipped</span>
           HTML
         end
 
@@ -297,7 +297,7 @@ RSpec.describe Dragnet::Exporters::HTMLExporter, requirements: ['SRS_DRAGNET_002
 
         let(:expected_output) do
           <<~HTML
-            <span class=\"badge bg-red\">Failed</span>
+            <span class=\"badge bg-red text-red-fg\">Failed</span>
           HTML
         end
 
