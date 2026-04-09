@@ -3,6 +3,7 @@
         <meta charset="UTF-8" />
         <title>Dragnet Report for <%= repository.multi? ? "Multiple Repositories" : shorten_sha1(repository.head.sha) %></title>
         <script src="https://unpkg.com/@tabler/core@1.0.0/dist/js/tabler.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
         <link rel="stylesheet" href="https://unpkg.com/@tabler/core@1.0.0/dist/css/tabler.min.css">
     </head>
@@ -314,28 +315,40 @@
                                         <div class="card-header">
                                             <h3 class="card-title">Overview</h3>
                                         </div>
-                                        <div class="table-responsive">
+                                        <div id="test-results-table" class="table-responsive">
                                             <table class="table table-vcenter table-hover">
                                                 <thead>
                                                     <tr>
-                                                        <th>#</th>
-                                                        <th>Requirement ID</th>
-                                                        <th>SHA1</th>
-                                                        <th>Files</th>
-                                                        <th>Review Status</th>
-                                                        <th>Test Result</th>
+                                                        <th>
+                                                          <button class="table-sort d-flex justify-content-between" data-sort="sort-number">#</button>
+                                                        </th>
+                                                        <th>
+                                                          <button class="table-sort d-flex justify-content-between" data-sort="sort-requirement-id">Requirement ID</button>
+                                                        </th>
+                                                        <th>
+                                                          <button class="table-sort d-flex justify-content-between" data-sort="sort-sha1">SHA1</button>
+                                                        </th>
+                                                        <th>
+                                                          <button class="table-sort d-flex justify-content-between" data-sort="sort-files">Files</button>
+                                                        </th>
+                                                        <th>
+                                                          <button class="table-sort d-flex justify-content-between" data-sort="sort-review-status">Review Status</button>
+                                                        </th>
+                                                        <th>
+                                                          <button class="table-sort d-flex justify-content-between" data-sort="sort-test-result">Test Result</button>
+                                                        </th>
                                                         <th>Details</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody class="table-tbody">
 
                                                     <% test_records.each_with_index do |test_record, index| %>
 
                                                         <tr>
-                                                            <td><%= index + 1 %></td>
-                                                            <td><%= test_record_id_to_string(test_record) %></td>
-                                                            <td><%= test_record.sha1 ? shorten_sha1(test_record.sha1) : '(None)' %></td>
-                                                            <td>
+                                                            <td class="sort-number"><%= index + 1 %></td>
+                                                            <td class="sort-requirement-id"><%= test_record_id_to_string(test_record) %></td>
+                                                            <td class="sort-sha1"><%= test_record.sha1 ? shorten_sha1(test_record.sha1) : '(None)' %></td>
+                                                            <td class="sort-files">
 
                                                                 <% if test_record.files&.any? %>
 
@@ -348,8 +361,8 @@
                                                                 <% end %>
 
                                                             </td>
-                                                            <td><%= review_status_badge(test_record) %></td>
-                                                            <td><%= verification_result_badge(test_record.verification_result) %></td>
+                                                            <td class="sort-review-status"><%= review_status_badge(test_record) %></td>
+                                                            <td class="sort-test-result"><%= verification_result_badge(test_record.verification_result) %></td>
                                                             <td><a href="#test-record-<%= index %>">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevrons-down" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -507,6 +520,18 @@
         </div>
         <script type="text/javascript">
             document.addEventListener("DOMContentLoaded", function () {
+                let headers = []
+
+                document.querySelectorAll('#test-results-table thead button').forEach(function(headerButton){
+                    headers.push(headerButton.dataset.sort)
+                })
+
+                new List("test-results-table", {
+                    sortClass: "table-sort",
+                    listClass: "table-tbody",
+                    valueNames: headers,
+                })
+
                 const elements = document.getElementsByClassName('md-description')
 
                 for (let element of elements) {
