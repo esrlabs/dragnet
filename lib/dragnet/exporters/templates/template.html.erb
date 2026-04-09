@@ -2,9 +2,9 @@
     <head>
         <meta charset="UTF-8" />
         <title>Dragnet Report for <%= repository.multi? ? "Multiple Repositories" : shorten_sha1(repository.head.sha) %></title>
-        <script src="https://unpkg.com/@tabler/core@1.0.0-beta2/dist/js/tabler.min.js"></script>
+        <script src="https://unpkg.com/@tabler/core@1.0.0/dist/js/tabler.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-        <link rel="stylesheet" href="https://unpkg.com/@tabler/core@1.0.0-beta2/dist/css/tabler.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/@tabler/core@1.0.0/dist/css/tabler.min.css">
     </head>
     <body class="antialiased"> <!-- theme-dark -->
         <div class="wrapper">
@@ -284,7 +284,7 @@
 
                                                     <tr>
                                                         <td><%= relative_to_repo(error[:file]) %></td>
-                                                        <td><span class="badge bg-red">Failed</span></td>
+                                                        <td><span class="badge bg-red text-red-fg">Failed</span></td>
                                                         <td><%= error[:message] %><br><%= error[:exception].message %></td>
                                                     </tr>
 
@@ -294,7 +294,7 @@
 
                                                     <tr>
                                                         <td><%= relative_to_repo(test_record.source_file) %></td>
-                                                        <td><span class="badge bg-green">Successfully Loaded</span></td>
+                                                        <td><span class="badge bg-green text-green-fg">Successfully Loaded</span></td>
                                                         <td>-</td>
                                                     </tr>
 

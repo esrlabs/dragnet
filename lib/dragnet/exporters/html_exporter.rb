@@ -91,7 +91,7 @@ module Dragnet
           color = test_record.reviewed? ? 'green' : 'red'
           review_status = test_record.review_status.capitalize
         else
-          color = 'gray'
+          color = 'muted'
           review_status = '(unknown)'
         end
 
@@ -143,7 +143,7 @@ module Dragnet
       # @return [String] The HTML code to produce a badge with the given color
       #   and text.
       def badge_html(color, text)
-        "<span class=\"badge bg-#{color}\">#{text}</span>"
+        "<span class=\"badge bg-#{color} text-#{color}-fg\">#{text}</span>"
       end
 
       # Converts the ID (+String+) or IDs (+Array<String>+) of a +TestRecord+
