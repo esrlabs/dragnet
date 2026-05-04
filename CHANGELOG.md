@@ -8,6 +8,8 @@ Please mark backwards incompatible changes with an exclamation mark at the start
 
 ## [Unreleased]
 
+## [6.1.0] - 2026-05-08
+
 ### Added
 - The "Test Results" table in the HTML report can now be sorted by clicking on
   the table's headers.
