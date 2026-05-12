@@ -2,11 +2,11 @@ AllCops:
   Exclude:
     - vendor/**/*
     - spec/spec_helper.rb
+Layout/LineLength:
+  Max: 120
 Metrics/BlockLength:
   Exclude:
     - spec/**/*
-Metrics/LineLength:
-  Max: 120
 Metrics/MethodLength:
   Max: 15
 Style/FrozenStringLiteralComment:
