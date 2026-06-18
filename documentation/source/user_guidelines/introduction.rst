@@ -6,8 +6,7 @@ Here is a quick user introduction to Dragnet.
 Requirements
 ------------
 
-**Ruby 3.1.0 or greater**:
-  Recommended Ruby (MRI) < 3.0
+**Ruby 3.2.2 or greater**
 
 **RubyGems 3.0.0 or greater**:
   Normally installed by default with Ruby.
